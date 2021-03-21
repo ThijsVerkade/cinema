@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CinemaDatabase" Class="DbCinemaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\thijs\source\repos\cinema\project\project\CinemaDatabase.mdf;Integrated Security=True" SettingsObjectName="Cinema_v1.Properties.Settings" SettingsPropertyName="CinemaDatabaseConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Hall" Member="Halls">
+    <Type Name="Hall">
+      <Column Name="hId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="hAmountSeats" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Reservation_Hall" Member="Reservation" ThisKey="hId" OtherKey="hId" Type="Reservation" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Reservation" Member="Reservations">
+    <Type Name="Reservation">
+      <Column Name="rId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="rSeat" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="mId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="hId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Reservation_Movie" Member="Movies" ThisKey="mId" OtherKey="mId" Type="Movie" />
+      <Association Name="Reservation_Hall" Member="Halls" ThisKey="hId" OtherKey="hId" Type="Hall" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Movie" Member="Movies">
+    <Type Name="Movie">
+      <Column Name="mId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="mTitle" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="mDescription" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="mPictureUrl" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="mVideoUrl" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="Reservation_Movie" Member="Reservation" ThisKey="mId" OtherKey="mId" Type="Reservation" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
