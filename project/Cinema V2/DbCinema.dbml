@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DatabaseServiceCinema" Class="DbCinemaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\DatabaseServiceCinema.mdf;Integrated Security=True" SettingsObjectName="Cinema_V2.Properties.Settings" SettingsPropertyName="DatabaseServiceCinemaConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Hall" Member="Halls">
+    <Type Name="Hall">
+      <Column Name="hId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="hAmountSeats" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Hall_Reservation" Member="Reservations" ThisKey="hId" OtherKey="hId" Type="Reservation" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Movie" Member="Movies">
+    <Type Name="Movie">
+      <Column Name="mId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="mMinutes" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="mTitle" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="mGenre" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="mDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="mDescription" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="mPictureUrl" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="mVideoUrl" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="Movie_Reservation" Member="Reservations" ThisKey="mId" OtherKey="mId" Type="Reservation" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Reservation" Member="Reservations">
+    <Type Name="Reservation">
+      <Column Name="rId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="rSeat" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="mId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="hId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="rDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="Hall_Reservation" Member="Hall" ThisKey="hId" OtherKey="hId" Type="Hall" IsForeignKey="true" />
+      <Association Name="Movie_Reservation" Member="Movie" ThisKey="mId" OtherKey="mId" Type="Movie" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
