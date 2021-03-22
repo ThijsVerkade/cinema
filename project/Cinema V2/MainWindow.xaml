@@ -7,17 +7,42 @@
         mc:Ignorable="d"
         Title="MovieCada" Height="552" Width="969.5">
     <Grid Margin="0,0,-8,-6">
-        <ListView HorizontalAlignment="Left" Height="507" Margin="10,10,0,0" VerticalAlignment="Top" Width="241">
+        <Grid x:Name="gdHome" HorizontalAlignment="Left" Height="507" Margin="256,10,0,0" VerticalAlignment="Top" Width="704" Visibility="hidden">
+            <Label x:Name="lblTitle" Content="Welkom bij MovieCada" HorizontalAlignment="Left" Margin="144,124,0,0" VerticalAlignment="Top" Height="64" Width="384" FontSize="36"/>
+            <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Left" Margin="619,10,0,0" VerticalAlignment="Top" Width="75"/>
+        </Grid>
+        <Grid x:Name="gdMovie" HorizontalAlignment="Left" Height="507" Margin="299,10,0,0" VerticalAlignment="Top" Width="661" Visibility="Visible">
+            <Image x:Name="imgMoviePicture" HorizontalAlignment="Left" Height="277" Margin="10,10,0,0" VerticalAlignment="Top" Width="252"/>
+            <Label Content="Uitgebrachte datum:" HorizontalAlignment="Left" Margin="267,10,0,0" VerticalAlignment="Top"/>
+            <Label Content="Title:" HorizontalAlignment="Left" Margin="267,41,0,0" VerticalAlignment="Top"/>
+            <Label Content="Genre:" HorizontalAlignment="Left" Margin="267,72,0,0" VerticalAlignment="Top"/>
+            <Label Content="Duur:" HorizontalAlignment="Left" Margin="267,103,0,0" VerticalAlignment="Top"/>
+            <Label Content="Beschrijving:" HorizontalAlignment="Left" Margin="267,134,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="lblMovieDate" Content="Uitgebrachte datum:" HorizontalAlignment="Left" Margin="391,10,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="lblMovieTitle" Content="Title:" HorizontalAlignment="Left" Margin="307,41,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="lblMovieGenre" Content="" HorizontalAlignment="Left" Margin="316,72,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="lblMovieDuration" Content="" HorizontalAlignment="Left" Margin="311,103,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="lblMovieDescription" Content="" HorizontalAlignment="Left" Margin="273,165,0,0" VerticalAlignment="Top" Height="102" Width="340"/>
+            <Button x:Name="btnReservateSession" Content="Reserveer" HorizontalAlignment="Left" Margin="377,352,0,0" VerticalAlignment="Top" Width="75" Height="22" Click="btnReservateSession_Click"/>
+            <DatePicker x:Name="dpSessionDate" HorizontalAlignment="Left" Margin="202,351,0,0" VerticalAlignment="Top" Width="170"/>
+        </Grid>
+        <ListView x:Name="lvMovies" HorizontalAlignment="Left" Height="489" Margin="10,10,0,0" VerticalAlignment="Top" Width="284" SelectionChanged="lvMovies_SelectionChanged">
             <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
+                <GridView AllowsColumnReorder="False">
+                    <GridViewColumn x:Name="GridViewImage" Header="Image"  Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image x:Name="Image_GridViewColumnName" Width="100" Height="50" Source="{Binding Image}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="100" Header="Name" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Width="70" Header="Genre" DisplayMemberBinding="{Binding Genre}" />
                 </GridView>
             </ListView.View>
         </ListView>
-        <Grid x:Name="gdHome" HorizontalAlignment="Left" Height="507" Margin="256,10,0,0" VerticalAlignment="Top" Width="704">
-            <Label Content="Welkom bij MovieCada" HorizontalAlignment="Left" Margin="144,124,0,0" VerticalAlignment="Top" Height="64" Width="384" FontSize="36"/>
-            <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Left" Margin="619,10,0,0" VerticalAlignment="Top" Width="75"/>
-        </Grid>
 
     </Grid>
 </Window>

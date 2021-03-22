@@ -22,7 +22,7 @@ namespace Cinema_V2
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="DatabaseServiceCinema")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="dbCinema")]
 	public partial class DbCinemaDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -39,10 +39,13 @@ namespace Cinema_V2
     partial void InsertReservation(Reservation instance);
     partial void UpdateReservation(Reservation instance);
     partial void DeleteReservation(Reservation instance);
+    partial void InsertSession(Session instance);
+    partial void UpdateSession(Session instance);
+    partial void DeleteSession(Session instance);
     #endregion
 		
 		public DbCinemaDataContext() : 
-				base(global::Cinema_V2.Properties.Settings.Default.DatabaseServiceCinemaConnectionString, mappingSource)
+				base(global::Cinema_V2.Properties.Settings.Default.dbCinemaConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -94,6 +97,14 @@ namespace Cinema_V2
 				return this.GetTable<Reservation>();
 			}
 		}
+		
+		public System.Data.Linq.Table<Session> Sessions
+		{
+			get
+			{
+				return this.GetTable<Session>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Hall")]
@@ -104,9 +115,9 @@ namespace Cinema_V2
 		
 		private int _hId;
 		
-		private int _hAmountSeats;
+		private System.Nullable<int> _hAmoutSeats;
 		
-		private EntitySet<Reservation> _Reservations;
+		private EntitySet<Session> _Sessions;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -114,13 +125,13 @@ namespace Cinema_V2
     partial void OnCreated();
     partial void OnhIdChanging(int value);
     partial void OnhIdChanged();
-    partial void OnhAmountSeatsChanging(int value);
-    partial void OnhAmountSeatsChanged();
+    partial void OnhAmoutSeatsChanging(System.Nullable<int> value);
+    partial void OnhAmoutSeatsChanged();
     #endregion
 		
 		public Hall()
 		{
-			this._Reservations = new EntitySet<Reservation>(new Action<Reservation>(this.attach_Reservations), new Action<Reservation>(this.detach_Reservations));
+			this._Sessions = new EntitySet<Session>(new Action<Session>(this.attach_Sessions), new Action<Session>(this.detach_Sessions));
 			OnCreated();
 		}
 		
@@ -144,36 +155,36 @@ namespace Cinema_V2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_hAmountSeats", DbType="Int NOT NULL")]
-		public int hAmountSeats
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_hAmoutSeats", DbType="Int")]
+		public System.Nullable<int> hAmoutSeats
 		{
 			get
 			{
-				return this._hAmountSeats;
+				return this._hAmoutSeats;
 			}
 			set
 			{
-				if ((this._hAmountSeats != value))
+				if ((this._hAmoutSeats != value))
 				{
-					this.OnhAmountSeatsChanging(value);
+					this.OnhAmoutSeatsChanging(value);
 					this.SendPropertyChanging();
-					this._hAmountSeats = value;
-					this.SendPropertyChanged("hAmountSeats");
-					this.OnhAmountSeatsChanged();
+					this._hAmoutSeats = value;
+					this.SendPropertyChanged("hAmoutSeats");
+					this.OnhAmoutSeatsChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Hall_Reservation", Storage="_Reservations", ThisKey="hId", OtherKey="hId")]
-		public EntitySet<Reservation> Reservations
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Hall_Session", Storage="_Sessions", ThisKey="hId", OtherKey="hId")]
+		public EntitySet<Session> Sessions
 		{
 			get
 			{
-				return this._Reservations;
+				return this._Sessions;
 			}
 			set
 			{
-				this._Reservations.Assign(value);
+				this._Sessions.Assign(value);
 			}
 		}
 		
@@ -197,13 +208,13 @@ namespace Cinema_V2
 			}
 		}
 		
-		private void attach_Reservations(Reservation entity)
+		private void attach_Sessions(Session entity)
 		{
 			this.SendPropertyChanging();
 			entity.Hall = this;
 		}
 		
-		private void detach_Reservations(Reservation entity)
+		private void detach_Sessions(Session entity)
 		{
 			this.SendPropertyChanging();
 			entity.Hall = null;
@@ -232,7 +243,7 @@ namespace Cinema_V2
 		
 		private string _mVideoUrl;
 		
-		private EntitySet<Reservation> _Reservations;
+		private EntitySet<Session> _Sessions;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -258,7 +269,7 @@ namespace Cinema_V2
 		
 		public Movie()
 		{
-			this._Reservations = new EntitySet<Reservation>(new Action<Reservation>(this.attach_Reservations), new Action<Reservation>(this.detach_Reservations));
+			this._Sessions = new EntitySet<Session>(new Action<Session>(this.attach_Sessions), new Action<Session>(this.detach_Sessions));
 			OnCreated();
 		}
 		
@@ -422,16 +433,16 @@ namespace Cinema_V2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Movie_Reservation", Storage="_Reservations", ThisKey="mId", OtherKey="mId")]
-		public EntitySet<Reservation> Reservations
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Movie_Session", Storage="_Sessions", ThisKey="mId", OtherKey="mId")]
+		public EntitySet<Session> Sessions
 		{
 			get
 			{
-				return this._Reservations;
+				return this._Sessions;
 			}
 			set
 			{
-				this._Reservations.Assign(value);
+				this._Sessions.Assign(value);
 			}
 		}
 		
@@ -455,13 +466,13 @@ namespace Cinema_V2
 			}
 		}
 		
-		private void attach_Reservations(Reservation entity)
+		private void attach_Sessions(Session entity)
 		{
 			this.SendPropertyChanging();
 			entity.Movie = this;
 		}
 		
-		private void detach_Reservations(Reservation entity)
+		private void detach_Sessions(Session entity)
 		{
 			this.SendPropertyChanging();
 			entity.Movie = null;
@@ -478,15 +489,11 @@ namespace Cinema_V2
 		
 		private int _rSeat;
 		
-		private int _mId;
-		
-		private int _hId;
+		private int _sId;
 		
 		private System.DateTime _rDate;
 		
-		private EntityRef<Hall> _Hall;
-		
-		private EntityRef<Movie> _Movie;
+		private EntityRef<Session> _Session;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -496,18 +503,15 @@ namespace Cinema_V2
     partial void OnrIdChanged();
     partial void OnrSeatChanging(int value);
     partial void OnrSeatChanged();
-    partial void OnmIdChanging(int value);
-    partial void OnmIdChanged();
-    partial void OnhIdChanging(int value);
-    partial void OnhIdChanged();
+    partial void OnsIdChanging(int value);
+    partial void OnsIdChanged();
     partial void OnrDateChanging(System.DateTime value);
     partial void OnrDateChanged();
     #endregion
 		
 		public Reservation()
 		{
-			this._Hall = default(EntityRef<Hall>);
-			this._Movie = default(EntityRef<Movie>);
+			this._Session = default(EntityRef<Session>);
 			OnCreated();
 		}
 		
@@ -522,6 +526,10 @@ namespace Cinema_V2
 			{
 				if ((this._rId != value))
 				{
+					if (this._Session.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnrIdChanging(value);
 					this.SendPropertyChanging();
 					this._rId = value;
@@ -551,26 +559,159 @@ namespace Cinema_V2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mId", DbType="Int NOT NULL")]
-		public int mId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sId", DbType="Int NOT NULL")]
+		public int sId
 		{
 			get
 			{
-				return this._mId;
+				return this._sId;
 			}
 			set
 			{
-				if ((this._mId != value))
+				if ((this._sId != value))
 				{
-					if (this._Movie.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnmIdChanging(value);
+					this.OnsIdChanging(value);
 					this.SendPropertyChanging();
-					this._mId = value;
-					this.SendPropertyChanged("mId");
-					this.OnmIdChanged();
+					this._sId = value;
+					this.SendPropertyChanged("sId");
+					this.OnsIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rDate", DbType="Date NOT NULL")]
+		public System.DateTime rDate
+		{
+			get
+			{
+				return this._rDate;
+			}
+			set
+			{
+				if ((this._rDate != value))
+				{
+					this.OnrDateChanging(value);
+					this.SendPropertyChanging();
+					this._rDate = value;
+					this.SendPropertyChanged("rDate");
+					this.OnrDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Session_Reservation", Storage="_Session", ThisKey="rId", OtherKey="sId", IsForeignKey=true)]
+		public Session Session
+		{
+			get
+			{
+				return this._Session.Entity;
+			}
+			set
+			{
+				Session previousValue = this._Session.Entity;
+				if (((previousValue != value) 
+							|| (this._Session.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Session.Entity = null;
+						previousValue.Reservation = null;
+					}
+					this._Session.Entity = value;
+					if ((value != null))
+					{
+						value.Reservation = this;
+						this._rId = value.sId;
+					}
+					else
+					{
+						this._rId = default(int);
+					}
+					this.SendPropertyChanged("Session");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Session")]
+	public partial class Session : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _sId;
+		
+		private int _hId;
+		
+		private int _mId;
+		
+		private System.DateTime _sDate;
+		
+		private EntityRef<Reservation> _Reservation;
+		
+		private EntityRef<Hall> _Hall;
+		
+		private EntityRef<Movie> _Movie;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnsIdChanging(int value);
+    partial void OnsIdChanged();
+    partial void OnhIdChanging(int value);
+    partial void OnhIdChanged();
+    partial void OnmIdChanging(int value);
+    partial void OnmIdChanged();
+    partial void OnsDateChanging(System.DateTime value);
+    partial void OnsDateChanged();
+    #endregion
+		
+		public Session()
+		{
+			this._Reservation = default(EntityRef<Reservation>);
+			this._Hall = default(EntityRef<Hall>);
+			this._Movie = default(EntityRef<Movie>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int sId
+		{
+			get
+			{
+				return this._sId;
+			}
+			set
+			{
+				if ((this._sId != value))
+				{
+					this.OnsIdChanging(value);
+					this.SendPropertyChanging();
+					this._sId = value;
+					this.SendPropertyChanged("sId");
+					this.OnsIdChanged();
 				}
 			}
 		}
@@ -599,27 +740,80 @@ namespace Cinema_V2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rDate", DbType="Date NOT NULL")]
-		public System.DateTime rDate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mId", DbType="Int NOT NULL")]
+		public int mId
 		{
 			get
 			{
-				return this._rDate;
+				return this._mId;
 			}
 			set
 			{
-				if ((this._rDate != value))
+				if ((this._mId != value))
 				{
-					this.OnrDateChanging(value);
+					if (this._Movie.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnmIdChanging(value);
 					this.SendPropertyChanging();
-					this._rDate = value;
-					this.SendPropertyChanged("rDate");
-					this.OnrDateChanged();
+					this._mId = value;
+					this.SendPropertyChanged("mId");
+					this.OnmIdChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Hall_Reservation", Storage="_Hall", ThisKey="hId", OtherKey="hId", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sDate", DbType="Date NOT NULL")]
+		public System.DateTime sDate
+		{
+			get
+			{
+				return this._sDate;
+			}
+			set
+			{
+				if ((this._sDate != value))
+				{
+					this.OnsDateChanging(value);
+					this.SendPropertyChanging();
+					this._sDate = value;
+					this.SendPropertyChanged("sDate");
+					this.OnsDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Session_Reservation", Storage="_Reservation", ThisKey="sId", OtherKey="rId", IsUnique=true, IsForeignKey=false)]
+		public Reservation Reservation
+		{
+			get
+			{
+				return this._Reservation.Entity;
+			}
+			set
+			{
+				Reservation previousValue = this._Reservation.Entity;
+				if (((previousValue != value) 
+							|| (this._Reservation.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Reservation.Entity = null;
+						previousValue.Session = null;
+					}
+					this._Reservation.Entity = value;
+					if ((value != null))
+					{
+						value.Session = this;
+					}
+					this.SendPropertyChanged("Reservation");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Hall_Session", Storage="_Hall", ThisKey="hId", OtherKey="hId", IsForeignKey=true)]
 		public Hall Hall
 		{
 			get
@@ -636,12 +830,12 @@ namespace Cinema_V2
 					if ((previousValue != null))
 					{
 						this._Hall.Entity = null;
-						previousValue.Reservations.Remove(this);
+						previousValue.Sessions.Remove(this);
 					}
 					this._Hall.Entity = value;
 					if ((value != null))
 					{
-						value.Reservations.Add(this);
+						value.Sessions.Add(this);
 						this._hId = value.hId;
 					}
 					else
@@ -653,7 +847,7 @@ namespace Cinema_V2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Movie_Reservation", Storage="_Movie", ThisKey="mId", OtherKey="mId", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Movie_Session", Storage="_Movie", ThisKey="mId", OtherKey="mId", IsForeignKey=true)]
 		public Movie Movie
 		{
 			get
@@ -670,12 +864,12 @@ namespace Cinema_V2
 					if ((previousValue != null))
 					{
 						this._Movie.Entity = null;
-						previousValue.Reservations.Remove(this);
+						previousValue.Sessions.Remove(this);
 					}
 					this._Movie.Entity = value;
 					if ((value != null))
 					{
-						value.Reservations.Add(this);
+						value.Sessions.Add(this);
 						this._mId = value.mId;
 					}
 					else

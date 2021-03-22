@@ -33,5 +33,16 @@ namespace Cinema_V2.Properties {
                 return ((string)(this["DatabaseServiceCinemaConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-KK33E21;Initial Catalog=dbCinema;Integrated Security=True;Con" +
+            "nect Timeout=30;Encrypt=False;TrustServerCertificate=False")]
+        public string dbCinemaConnectionString {
+            get {
+                return ((string)(this["dbCinemaConnectionString"]));
+            }
+        }
     }
 }
