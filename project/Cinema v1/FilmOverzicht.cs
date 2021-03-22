@@ -10,18 +10,11 @@ using System.Windows.Forms;
 
 namespace Cinema_v1
 {
-    public partial class Form1 : Form
+    public partial class FilmOverzicht : Form
     {
-        public Form1()
+        public FilmOverzicht()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            FilmOverzicht fo = new FilmOverzicht();
-            fo.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -29,9 +22,11 @@ namespace Cinema_v1
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-
+            this.Hide(); // verberg de form
+            Form1 f1 = new Form1(); // maak het de form aan
+            f1.Show(); // laat de form zien
         }
     }
 }
