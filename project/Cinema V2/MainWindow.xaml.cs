@@ -22,6 +22,7 @@ namespace Cinema_V2
     {
         private DbCinemaDataContext db;
         private classes.CinemaMovie movieHelper;
+        private classes.CinemaUser userHelper;
 
         public MainWindow()
         {
@@ -29,12 +30,14 @@ namespace Cinema_V2
 
             db = new DbCinemaDataContext();
             movieHelper = new classes.CinemaMovie(db);
+            userHelper = new classes.CinemaUser(db); // maak globale connectie naar database 
+
 
             List<MovieList> mylist = new List<MovieList>();
 
             foreach (Movie m in movieHelper.ReadAll()) {
                 MovieList ml = new MovieList();
-                ml.Image = @"C:\Users\thijs\source\repos\ThijsVerkade\cinema\project\Cinema V2\images" + m.mPictureUrl;  //Fix this 
+                ml.Image = @"C:\Users\Darren\source\repos\ThijsVerkade\cinema\project\Cinema V2\" + m.mPictureUrl;  //Fix this 
                 ml.Name = m.mTitle;
                 ml.Genre = m.mGenre;
                 ml.Id = m.mId;
@@ -57,7 +60,7 @@ namespace Cinema_V2
             lblMovieGenre.Content = temp.mGenre.ToString();
             lblMovieTitle.Content = temp.mTitle.ToString();
             lblMovieDescription.Content = temp.mDescription;
-            Uri resourceUri = new Uri(@"C:\Users\thijs\source\repos\ThijsVerkade\cinema\project\Cinema V2\" + temp.mPictureUrl.ToString());
+            Uri resourceUri = new Uri(@"C:\Users\Darren\source\repos\ThijsVerkade\cinema\project\Cinema V2\" + temp.mPictureUrl.ToString());
             imgMoviePicture.Source = new BitmapImage(resourceUri);
 
             gdMovie.Visibility = Visibility.Visible;
@@ -67,5 +70,34 @@ namespace Cinema_V2
         {
 
         }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            gdHome.Visibility = Visibility.Hidden;
+            LoginHome.Visibility = Visibility.Visible;
+        }
+
+        private void btnSubmit_Click(object sender, RoutedEventArgs e)
+        {
+            string checkUsername = txtUsername.Text; // capture input van de velden
+            string checkPassword = txtPassword.Text;
+            
+            
+            if(userHelper.Readone(checkUsername,checkPassword) == true) // checkt of de waarde van de velden kloppen
+            {
+
+                MainWindow mw = new MainWindow();
+                mw.Close();
+                
+                AdminInlog adminInlog = new AdminInlog();
+                adminInlog.Show();
+                
+            }
+            else
+            {
+                MessageBox.Show("Username or password Incorrect! ");
+            }
+        }
+           
     }
 }
