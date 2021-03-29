@@ -19,13 +19,13 @@ namespace Cinema_V2.classes
             this.db = database;
             dbHelper = new CinemaDatabase(database);
         }
-
+       
         public bool Readone(string Username, string Password)
         {
             // query om te data van de database op te halen.
             User Query = (from User in db.Users where User.Username == Username && User.Password == Password select User).FirstOrDefault();
 
-            if (Query == null)
+            if(Query == null)
             {
                 return false;
             }

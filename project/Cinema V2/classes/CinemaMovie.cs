@@ -77,6 +77,6 @@ namespace Cinema_V2.classes
         {
             //Returning All Object
             return this.db.Movies.ToList();
-        }
+        }       
     }
 }
