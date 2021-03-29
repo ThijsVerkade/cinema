@@ -103,6 +103,7 @@ namespace Cinema_V2
         private void cmbSessions_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
             gdReservate.Visibility = Visibility.Visible;
+            LoginHome.Visibility = Visibility.Hidden;
 
             models.SessionList mSl = (models.SessionList)cmbSessions.SelectedItem;
             int takeSeats = reservationHelper.ReadReservationSeats(mSl.Id);
