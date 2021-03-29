@@ -1,12 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dbCinema" Class="DbCinemaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=GAMEPCDARREN;Initial Catalog=dbCinema;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False" SettingsObjectName="Cinema_V2.Properties.Settings" SettingsPropertyName="dbCinemaConnectionString1" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.[User]" Member="Users">
-    <Type Name="User">
-      <Column Name="uId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Username" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
+  <Connection Mode="AppSettings" ConnectionString="Data Source=GAMEPCDARREN;Initial Catalog=dbCinema;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False" SettingsObjectName="Cinema_V2.Properties.Settings" SettingsPropertyName="dbCinemaConnectionString1" Provider="System.Data.SqlClient" />S
   <Table Name="dbo.Hall" Member="Halls">
     <Type Name="Hall">
       <Column Name="hId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -47,7 +40,7 @@
       <Association Name="Movie_Session" Member="Movie" ThisKey="mId" OtherKey="mId" Type="Movie" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.[User]" Member="Users">
+  <Table Name="dbo.Users" Member="Users">
     <Type Name="User">
       <Column Name="UserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Username" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />

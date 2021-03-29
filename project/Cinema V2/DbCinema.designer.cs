@@ -45,7 +45,7 @@ namespace Cinema_V2
     #endregion
 		
 		public DbCinemaDataContext() : 
-				base(global::Cinema_V2.Properties.Settings.Default.dbCinemaConnectionString1, mappingSource)
+				base(global::Cinema_V2.Properties.Settings.Default.dbCinemaConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -72,14 +72,6 @@ namespace Cinema_V2
 				base(connection, mappingSource)
 		{
 			OnCreated();
-		}
-		
-		public System.Data.Linq.Table<User> Users
-		{
-			get
-			{
-				return this.GetTable<User>();
-			}
 		}
 		
 		public System.Data.Linq.Table<Hall> Halls
@@ -119,69 +111,6 @@ namespace Cinema_V2
 			get
 			{
 				return this.GetTable<User>();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[User]")]
-	public partial class User
-	{
-		
-		private System.Nullable<int> _uId;
-		
-		private string _Username;
-		
-		private string _Password;
-		
-		public User()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_uId", DbType="Int")]
-		public System.Nullable<int> uId
-		{
-			get
-			{
-				return this._uId;
-			}
-			set
-			{
-				if ((this._uId != value))
-				{
-					this._uId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Username", DbType="VarChar(50)")]
-		public string Username
-		{
-			get
-			{
-				return this._Username;
-			}
-			set
-			{
-				if ((this._Username != value))
-				{
-					this._Username = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="VarChar(50)")]
-		public string Password
-		{
-			get
-			{
-				return this._Password;
-			}
-			set
-			{
-				if ((this._Password != value))
-				{
-					this._Password = value;
-				}
 			}
 		}
 	}
@@ -981,7 +910,7 @@ namespace Cinema_V2
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[User]")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
 	public partial class User
 	{
 		
