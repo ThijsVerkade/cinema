@@ -65,16 +65,24 @@ namespace Cinema_V2.classes
             //Returning Session ID
             return r.sId;
         }
+
         public Session ReadOneDate(string date)
         {
             //Returning Selected Object
             return (from u in this.db.Sessions where u.sDate == Convert.ToDateTime(date) select u).FirstOrDefault();
         }
         
+
         public Session ReadOne(int id)
         {
             //Returning Selected Object
-            return (from u in this.db.Sessions where u.sId == id select u).FirstOrDefault();
+            return (from u in this.db.Sessions where u.sId == id && u.hId == id select u).FirstOrDefault();
+        }
+
+        public List<Session> ReadOnMovie(int mId)
+        {
+            //Returning Selected Object
+            return (from u in this.db.Sessions where u.mId == mId select u).ToList();
         }
 
         public List<Session> ReadAll()
@@ -82,6 +90,5 @@ namespace Cinema_V2.classes
             //Returning All Object
             return this.db.Sessions.ToList();
         }
-
     }
 }

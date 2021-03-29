@@ -20,7 +20,7 @@ namespace Cinema_V2.classes
             dbHelper = new CinemaDatabase(database);
         }
 
-        public int Create(int seats, int sId)
+        public int Create(int seats, int sId, DateTime date)
         {
             //Creating Object
             Reservation r = new Reservation();
@@ -28,6 +28,7 @@ namespace Cinema_V2.classes
             //Filling Object
             r.rSeat = seats;
             r.sId = sId;
+            r.rDate = date;
             this.db.Reservations.InsertOnSubmit(r);
 
             //Updating Database
@@ -73,6 +74,18 @@ namespace Cinema_V2.classes
         {
             //Returning All Object
             return this.db.Reservations.ToList();
+        }
+
+        public int ReadReservationSeats(int rId)
+        {
+            List<Reservation> tr = (from u in this.db.Reservations where u.sId == rId select u).ToList();
+            int seats = 0;
+
+            foreach (Reservation item in tr){
+                seats = seats + item.rSeat;
+            }
+
+            return seats;
         }
     }
 }

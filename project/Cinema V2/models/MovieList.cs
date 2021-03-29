@@ -14,5 +14,9 @@ namespace Cinema_V2
         public string Name { get; set; }
 
         public string Genre { get; set; }
+
+        public string Description { get; set; }
+
+        public DateTime MovieDate { get; set; }
     }
 }
