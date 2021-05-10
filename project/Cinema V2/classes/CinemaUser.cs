@@ -33,7 +33,6 @@ namespace Cinema_V2.classes
             {
                 return true;
             }
-
         }
     }
 }

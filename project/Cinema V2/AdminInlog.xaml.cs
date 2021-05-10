@@ -42,7 +42,7 @@ namespace Cinema_V2
 
                 myList.Add(ml);
             }
-            DataGridAdmin.ItemsSource = myList;
+            DataGridAdmin.ItemsSource = movieHelper.ReadAll();
         }
 
         private void DataGridAdmin_SelectionChanged(object sender, SelectionChangedEventArgs e)

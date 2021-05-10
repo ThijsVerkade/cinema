@@ -16,6 +16,7 @@
             <TextBox Name="txtUsername" HorizontalAlignment="Left" Height="37" Margin="212,252,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="306"/>
             <TextBox Name="txtPassword" HorizontalAlignment="Left" Height="37" Margin="212,328,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="306"/>
             <Button Name="btnSubmit" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Width="155" Margin="284,400,0,0" Height="42" Click="btnSubmit_Click"/>
+            <Button x:Name="btnAnuleren" Content="Annuleren" HorizontalAlignment="Left" Margin="592,10,0,0" VerticalAlignment="Top" Width="76"  Click="btnAnnuleren_Click" />
             <Label Content="Username:" HorizontalAlignment="Left" Margin="220,221,0,0" VerticalAlignment="Top" Width="113"/>
             <Label Content="Password:" HorizontalAlignment="Left" Height="27" Margin="212,296,0,0" VerticalAlignment="Top" Width="113"/>
         </Grid>
@@ -31,16 +32,16 @@
             <Label x:Name="lblMovieGenre" Content="" HorizontalAlignment="Left" Margin="316,72,0,0" VerticalAlignment="Top"/>
             <Label x:Name="lblMovieDuration" Content="" HorizontalAlignment="Left" Margin="311,103,0,0" VerticalAlignment="Top"/>
             <Label x:Name="lblMovieDescription" Content="" HorizontalAlignment="Left" Margin="273,165,0,0" VerticalAlignment="Top" Height="102" Width="340"/>
-            <Label Content="beschikbare stoelen:" HorizontalAlignment="Left" Margin="169,363,0,0" VerticalAlignment="Top" Width="123"/>
-            <ComboBox x:Name="cmbSessions" HorizontalAlignment="Left" DisplayMemberPath="Date" VerticalAlignment="Top" Width="197" Margin="169,337,0,0" Height="26" SelectionChanged="cmbSessions_SelectionChanged_1"/>
-            <Grid x:Name="gdReservate" Visibility="Visible" HorizontalAlignment="Left" Height="507" VerticalAlignment="Top" Width="661">
+             <Grid x:Name="gdReservate" Visibility="Visible" HorizontalAlignment="Left" Height="507" VerticalAlignment="Top" Width="661">
+                <Label Content="beschikbare stoelen:" HorizontalAlignment="Left" Margin="169,363,0,0" VerticalAlignment="Top" Width="123"/>
+                <ComboBox x:Name="cmbSessions" HorizontalAlignment="Left" DisplayMemberPath="Date" VerticalAlignment="Top" Width="197" Margin="169,337,0,0" Height="26" SelectionChanged="cmbSessions_SelectionChanged_1"/>
+                <Label x:Name="lblReservationSeats" Content="" HorizontalAlignment="Left" Margin="297,363,0,0" VerticalAlignment="Top" Width="69"/>
                 <Button x:Name="btnReservateSession" Content="Reserveer" HorizontalAlignment="Left" Margin="170,424,0,0" VerticalAlignment="Top" Width="197" Height="26" Click="btnReservateSession_Click"/>
                 <TextBox x:Name="txtSeats" HorizontalAlignment="Left" Height="26" Margin="266,393,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="101"/>
                 <Label Content="Zit plaatsen" HorizontalAlignment="Left" Margin="170,393,0,0" VerticalAlignment="Top" Width="91"/>
                 <Label Content="Reserveren" HorizontalAlignment="Left" Margin="170,307,0,0" VerticalAlignment="Top" Width="69"/>
             </Grid>
-            <Label x:Name="lblReservationSeats" Content="" HorizontalAlignment="Left" Margin="297,363,0,0" VerticalAlignment="Top" Width="69"/>
-        </Grid>
+           </Grid>
         <ListView x:Name="lvMovies" HorizontalAlignment="Left" Height="489" Margin="10,10,0,0" VerticalAlignment="Top" Width="284" SelectionChanged="lvMovies_SelectionChanged">
             <ListView.View>
                 <GridView AllowsColumnReorder="False">

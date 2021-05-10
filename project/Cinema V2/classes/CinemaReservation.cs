@@ -20,15 +20,15 @@ namespace Cinema_V2.classes
             dbHelper = new CinemaDatabase(database);
         }
 
-        public int Create(int seats, int sId, DateTime date)
+        public int Create(int seats, int sId, string date)
         {
             //Creating Object
             Reservation r = new Reservation();
-
             //Filling Object
+            r.rId = db.Reservations.Max(u => u.rId) + 1;
             r.rSeat = seats;
             r.sId = sId;
-            r.rDate = date;
+            //r.rDate = new DateTime();
             this.db.Reservations.InsertOnSubmit(r);
 
             //Updating Database

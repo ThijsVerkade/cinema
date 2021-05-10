@@ -7,12 +7,16 @@
         mc:Ignorable="d"
         Title="AdminInlog" Height="450" Width="800">
     <Grid>
-        <DataGrid x:Name="DataGridAdmin" HorizontalAlignment="Left" Height="386" Margin="26,10,0,0" VerticalAlignment="Top" Width="740" SelectionChanged="DataGridAdmin_SelectionChanged">
+        <DataGrid x:Name="DataGridAdmin"  HorizontalAlignment="Left" Height="386" Margin="26,10,0,0" AutoGenerateColumns="False" VerticalAlignment="Top" Width="740" SelectionChanged="DataGridAdmin_SelectionChanged" IsSynchronizedWithCurrentItem="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Titel" Binding="{Binding Path= Name}"/>
-                <DataGridTextColumn Header="Genre" Binding="{Binding Path= Genre}"/>
-                <DataGridTextColumn Header="Datum" Binding="{Binding Path= MovieDate}"/>
-                <DataGridTextColumn Header="Beschrijving" Binding="{Binding Path= Description}"/>
+                <DataGridTextColumn Header="Titel" Binding="{Binding mId, UpdateSourceTrigger=PropertyChanged }" />
+                <DataGridTextColumn Header="Tijd" Binding="{Binding mMinutes, UpdateSourceTrigger=PropertyChanged }" />
+                <DataGridTextColumn Header="Titel" Binding="{Binding mTitle, UpdateSourceTrigger=PropertyChanged }" />
+                <DataGridTextColumn Header="Genre" Binding="{Binding mGenre, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Datum" Binding="{Binding mDate, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Beschrijving" Binding="{Binding mDescription, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Foto url" Binding="{Binding mPictureUrl, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Video url" Binding="{Binding mVideoUrl, UpdateSourceTrigger=PropertyChanged}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

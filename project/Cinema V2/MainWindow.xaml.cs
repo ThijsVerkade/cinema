@@ -69,6 +69,16 @@ namespace Cinema_V2
                 sl.Hall = s.Hall;
                 SessionLists.Add(sl);
             }
+
+            if (SessionLists.Count() > 0) {
+                gdReservate.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                gdReservate.Visibility = Visibility.Hidden;
+            }
+
+
             cmbSessions.ItemsSource = SessionLists.ToList();
 
 
@@ -81,6 +91,7 @@ namespace Cinema_V2
             imgMoviePicture.Source = new BitmapImage(resourceUri);
 
             gdMovie.Visibility = Visibility.Visible;
+            LoginHome.Visibility = Visibility.Hidden;
         }
 
         private void btnReservateSession_Click(object sender, RoutedEventArgs e)
@@ -89,15 +100,25 @@ namespace Cinema_V2
 
             int n;
             bool isNumeric = int.TryParse(seats, out n);
+            int seatsAvailable = Convert.ToInt32(lblReservationSeats.Content);
+
             if (isNumeric)
             {
-                models.SessionList mSl = (models.SessionList)cmbSessions.SelectedItem;
-                reservationHelper.Create(Convert.ToInt32(seats), mSl.Id, new DateTime());
+                if (seatsAvailable >= Convert.ToInt32(seats))
+                {
+                    models.SessionList mSl = (models.SessionList)cmbSessions.SelectedItem;
+                    reservationHelper.Create(Convert.ToInt32(seats), mSl.Id, DateTime.Now.ToString("MM/dd/yyyy"));
+
+                    updateSeatsLabel();
+                } else {
+                    MessageBox.Show("Please enter a valid seat amount");
+                }
             }
             else {
                 MessageBox.Show("Please enter a valid number");
-                txtSeats.Text = "";
             }
+
+            txtSeats.Text = "";
         }
 
         private void cmbSessions_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
@@ -105,10 +126,27 @@ namespace Cinema_V2
             gdReservate.Visibility = Visibility.Visible;
             LoginHome.Visibility = Visibility.Hidden;
 
-            models.SessionList mSl = (models.SessionList)cmbSessions.SelectedItem;
-            int takeSeats = reservationHelper.ReadReservationSeats(mSl.Id);
-            lblReservationSeats.Content = mSl.Hall.hAmoutSeats.ToString() + takeSeats;
+            updateSeatsLabel();
         }
+
+        private void updateSeatsLabel() {
+            models.SessionList mSl = (models.SessionList)cmbSessions.SelectedItem;
+            if (mSl != null)
+            {
+                int takeSeats = reservationHelper.ReadReservationSeats(mSl.Id);
+
+                int seats = Convert.ToInt32(mSl.Hall.hAmoutSeats) - Convert.ToInt32(takeSeats);
+
+                lblReservationSeats.Content = seats;
+                gdReservate.Visibility = Visibility.Visible;
+            }
+            else {
+
+                gdReservate.Visibility = Visibility.Hidden;
+            }
+
+        }
+
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
