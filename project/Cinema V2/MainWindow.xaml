@@ -9,13 +9,14 @@
     <Grid Margin="0,0,-8,-6">
         <Grid x:Name="gdHome" HorizontalAlignment="Left" Height="507" Margin="256,10,0,0" VerticalAlignment="Top" Width="704" Visibility="Visible">
             <Label x:Name="lblTitle" Content="Welkom bij MovieCada" HorizontalAlignment="Left" Margin="144,124,0,0" VerticalAlignment="Top" Height="64" Width="384" FontSize="36"/>
-            <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Left" Margin="619,10,0,0" VerticalAlignment="Top" Width="75"  Click="btnLogin_Click"/>
+            <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Left" Margin="619,10,0,0" VerticalAlignment="Top" Width="75"  Click="btnLogin_Click"/>                
         </Grid>
         <Grid x:Name="LoginHome" HorizontalAlignment="Left" Height="507" Margin="256,10,0,0" VerticalAlignment="Top" Width="704" Visibility="Hidden">
             <Label x:Name="loginTitle" Content="Login" HorizontalAlignment="Center" Margin="284,121,36,0" VerticalAlignment="Top" Height="64" Width="384" FontSize="36"/>
             <TextBox Name="txtUsername" HorizontalAlignment="Left" Height="37" Margin="212,252,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="306"/>
             <TextBox Name="txtPassword" HorizontalAlignment="Left" Height="37" Margin="212,328,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="306"/>
             <Button Name="btnSubmit" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Width="155" Margin="284,400,0,0" Height="42" Click="btnSubmit_Click"/>
+            <Button x:Name="btnAnuleren" Content="Annuleren" HorizontalAlignment="Left" Margin="592,10,0,0" VerticalAlignment="Top" Width="76"  Click="btnAnnuleren_Click" />
             <Label Content="Username:" HorizontalAlignment="Left" Margin="220,221,0,0" VerticalAlignment="Top" Width="113"/>
             <Label Content="Password:" HorizontalAlignment="Left" Height="27" Margin="212,296,0,0" VerticalAlignment="Top" Width="113"/>
         </Grid>
@@ -57,7 +58,7 @@
                     <GridViewColumn Width="70" Header="Genre" DisplayMemberBinding="{Binding Genre}" />
                 </GridView>
             </ListView.View>
-        </ListView>
+        </ListView>       
 
     </Grid>
 </Window>
