@@ -107,8 +107,9 @@ namespace Cinema_V2
                 if (seatsAvailable >= Convert.ToInt32(seats))
                 {
                     models.SessionList mSl = (models.SessionList)cmbSessions.SelectedItem;
-                    reservationHelper.Create(Convert.ToInt32(seats), mSl.Id, DateTime.Now.ToString("MM/dd/yyyy"));
+                    int id = reservationHelper.Create(Convert.ToInt32(seats), mSl.Id, DateTime.Now.ToString("MM/dd/yyyy"));
 
+                    MessageBox.Show("Your ticket number is #" + id.ToString());
                     updateSeatsLabel();
                 } else {
                     MessageBox.Show("Please enter a valid seat amount");

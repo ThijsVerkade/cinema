@@ -2,55 +2,55 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="DbCinema">
   <DataContextMoniker Name="/DbCinemaDataContext" />
   <nestedChildShapes>
-    <classShape Id="5124402d-d1a3-4225-9268-774d02fc6f60" absoluteBounds="3.75, 3.75, 2, 1.3862939453125005">
-      <DataClassMoniker Name="/DbCinemaDataContext/User" />
-      <nestedChildShapes>
-        <elementListCompartment Id="c1d3cb6b-1d4b-4917-a0e9-88f298c45299" absoluteBounds="3.765, 4.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="ae0cfc91-ffef-4f88-bf7b-c33fa46e22a5" absoluteBounds="0.75, 1.125, 2, 1.1939925130208338">
+    <classShape Id="67bca051-2df2-40d4-8a1e-b1c95ac32afc" absoluteBounds="1.625, 1.375, 2, 1.1939925130208338">
       <DataClassMoniker Name="/DbCinemaDataContext/Hall" />
       <nestedChildShapes>
-        <elementListCompartment Id="5b99a097-51c5-42a3-add7-be89a774844a" absoluteBounds="0.765, 1.585, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="3e12d69e-c5c1-4c90-ae7c-8664c9174177" absoluteBounds="1.6400000000000001, 1.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="8a475f4c-8a59-40c3-b49a-1b1aeb426835" absoluteBounds="0.75, 4.75, 2, 2.3478011067708344">
+    <classShape Id="9678b205-82aa-48a2-b49d-8945beadef4c" absoluteBounds="1.625, 5, 2, 2.3478011067708344">
       <DataClassMoniker Name="/DbCinemaDataContext/Movie" />
       <nestedChildShapes>
-        <elementListCompartment Id="bdf8df00-b4ff-4dae-9c26-089a05d4e275" absoluteBounds="0.765, 5.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="1c602958-95c8-4977-ae12-6a098bae98f6" absoluteBounds="1.6400000000000001, 5.46, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="5c695f07-6238-464f-bf9d-902d7eebac31" absoluteBounds="6.25, 0.875, 2, 1.5785953776041666">
-      <DataClassMoniker Name="/DbCinemaDataContext/Reservation" />
-      <nestedChildShapes>
-        <elementListCompartment Id="c1ee6227-6a29-49ec-888b-236994a19796" absoluteBounds="6.265, 1.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="85be8c60-7070-4f54-a300-dad5847f6697" absoluteBounds="3.5, 0.875, 2, 1.5785953776041666">
+    <classShape Id="3978ac08-623d-4470-9bdd-2c4774d8ca76" absoluteBounds="4.375, 1.125, 2, 1.5785953776041666">
       <DataClassMoniker Name="/DbCinemaDataContext/Session" />
       <nestedChildShapes>
-        <elementListCompartment Id="c32cb074-368e-4434-b5a6-86ac119eb076" absoluteBounds="3.515, 1.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="70bf1504-0beb-495d-a7f3-4ea1a38f8485" absoluteBounds="4.3900000000000006, 1.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.5 : 1.66429768880208); (6.25 : 1.66429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DbCinemaDataContext/Session/Session_Reservation" />
-      <nodes>
-        <classShapeMoniker Id="85be8c60-7070-4f54-a300-dad5847f6697" />
-        <classShapeMoniker Id="5c695f07-6238-464f-bf9d-902d7eebac31" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 1.72199625651042); (3.5 : 1.72199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <classShape Id="133de019-8e70-4ced-878d-ccffb6881856" absoluteBounds="4.625, 4, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/DbCinemaDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6fce47b5-ba78-4232-bd4f-b2bb4b7ff885" absoluteBounds="4.6400000000000006, 4.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.625 : 1.97199625651042); (4.375 : 1.97199625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DbCinemaDataContext/Hall/Hall_Session" />
       <nodes>
-        <classShapeMoniker Id="ae0cfc91-ffef-4f88-bf7b-c33fa46e22a5" />
-        <classShapeMoniker Id="85be8c60-7070-4f54-a300-dad5847f6697" />
+        <classShapeMoniker Id="67bca051-2df2-40d4-8a1e-b1c95ac32afc" />
+        <classShapeMoniker Id="3978ac08-623d-4470-9bdd-2c4774d8ca76" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 6.14829752604167); (3.59375 : 6.14829752604167); (3.59375 : 2.45359537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3.625 : 6.39829752604167); (4.46875 : 6.39829752604167); (4.46875 : 2.70359537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DbCinemaDataContext/Movie/Movie_Session" />
       <nodes>
-        <classShapeMoniker Id="8a475f4c-8a59-40c3-b49a-1b1aeb426835" />
-        <classShapeMoniker Id="85be8c60-7070-4f54-a300-dad5847f6697" />
+        <classShapeMoniker Id="9678b205-82aa-48a2-b49d-8945beadef4c" />
+        <classShapeMoniker Id="3978ac08-623d-4470-9bdd-2c4774d8ca76" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="eb684a86-3db3-4641-841d-038faf7800ad" absoluteBounds="7.25, 0.875, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/DbCinemaDataContext/Reservation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="290f9528-88ef-4516-ba2d-ead71d5b210e" absoluteBounds="7.265, 1.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.25 : 1.78929768880208); (6.375 : 1.78929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DbCinemaDataContext/Reservation/Reservation_Session" />
+      <nodes>
+        <classShapeMoniker Id="eb684a86-3db3-4641-841d-038faf7800ad" />
+        <classShapeMoniker Id="3978ac08-623d-4470-9bdd-2c4774d8ca76" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>
