@@ -45,7 +45,7 @@ namespace Cinema_V2
     #endregion
 		
 		public DbCinemaDataContext() : 
-				base(global::Cinema_V2.Properties.Settings.Default.dbCinemaConnectionString, mappingSource)
+				base(global::Cinema_V2.Properties.Settings.Default.dbCinemaConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -748,7 +748,7 @@ namespace Cinema_V2
 	public partial class User
 	{
 		
-		private System.Nullable<int> _UserID;
+		private System.Nullable<int> _uId;
 		
 		private string _Username;
 		
@@ -758,18 +758,18 @@ namespace Cinema_V2
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="Int")]
-		public System.Nullable<int> UserID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_uId", DbType="Int")]
+		public System.Nullable<int> uId
 		{
 			get
 			{
-				return this._UserID;
+				return this._uId;
 			}
 			set
 			{
-				if ((this._UserID != value))
+				if ((this._uId != value))
 				{
-					this._UserID = value;
+					this._uId = value;
 				}
 			}
 		}

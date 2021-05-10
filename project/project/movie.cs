@@ -13,9 +13,9 @@ namespace project
         }
 
         public void Create() {
-            
 
-            db.Movie.AddMovieRow()
+
+            db.Movie.AddMovieRow();
         
         }
         public void Delete() { 

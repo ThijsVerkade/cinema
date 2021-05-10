@@ -87,7 +87,7 @@ namespace Cinema_V2
             lblMovieGenre.Content = temp.mGenre.ToString();
             lblMovieTitle.Content = temp.mTitle.ToString();
             lblMovieDescription.Content = temp.mDescription;
-            Uri resourceUri = new Uri(@"C:\Users\thijs\source\repos\ThijsVerkade\cinema\project\Cinema V2\" + temp.mPictureUrl.ToString());
+            Uri resourceUri = new Uri(@"C:\Users\Darren\source\repos\ThijsVerkade\cinema\project\Cinema V2\images" + temp.mPictureUrl.ToString());
             imgMoviePicture.Source = new BitmapImage(resourceUri);
 
             gdMovie.Visibility = Visibility.Visible;
@@ -177,5 +177,10 @@ namespace Cinema_V2
             }
         }
 
+        private void btnAnnuleren_Click(object sender, RoutedEventArgs e)
+        {
+            gdHome.Visibility = Visibility.Visible;
+            LoginHome.Visibility = Visibility.Hidden;
+        }
     }
 }
