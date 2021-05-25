@@ -6,19 +6,108 @@
         xmlns:local="clr-namespace:Cinema_V2"
         mc:Ignorable="d"
         Title="MovieCada" Height="552" Width="969.5">
-    <Grid Margin="0,0,-8,-6">
-        <Grid x:Name="gdHome" HorizontalAlignment="Left" Height="507" Margin="256,10,0,0" VerticalAlignment="Top" Width="704" Visibility="Visible">
-            <Label x:Name="lblTitle" Content="Welkom bij MovieCada" HorizontalAlignment="Left" Margin="144,124,0,0" VerticalAlignment="Top" Height="64" Width="384" FontSize="36"/>
-            <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Left" Margin="619,10,0,0" VerticalAlignment="Top" Width="75"  Click="btnLogin_Click"/>                
+    <Window.Resources>
+        <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid HorizontalAlignment="Left" Height="27.333" Width="134.667">
+                            <Rectangle Fill="#FFFFC426" HorizontalAlignment="Stretch" Height="27.333" Stroke="Black" VerticalAlignment="Top" Width="Auto" RadiusY="6.5" RadiusX="6.5" Margin="0"/>
+                            <TextBlock Margin="39.333,4.416,39.334,5.251" TextWrapping="Wrap"><Run Text="Annuleren"/><LineBreak/><Run/></TextBlock>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true"/>
+                            <Trigger Property="IsMouseOver" Value="true"/>
+                            <Trigger Property="IsPressed" Value="true"/>
+                            <Trigger Property="IsEnabled" Value="false"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonStyle2" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid HorizontalAlignment="Left" Height="27.333" Width="164.333" Margin="0,7.333,-9.333,7.333">
+                            <Rectangle Fill="#FFFFC426" HorizontalAlignment="Left" Height="27.333" Stroke="Black" VerticalAlignment="Top" Width="164.333" RadiusY="6.5" RadiusX="6.5" Margin="0"/>
+                            <TextBlock Margin="66.334,5.083,66.666,4.584" TextWrapping="Wrap" Text="Login"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true"/>
+                            <Trigger Property="IsMouseOver" Value="true"/>
+                            <Trigger Property="IsPressed" Value="true"/>
+                            <Trigger Property="IsEnabled" Value="false"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonStyle3" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid HorizontalAlignment="Left" Height="27.333" Width="164.333" Margin="0,7.333,-9.333,7.333">
+                            <Rectangle Fill="#FFFFC426" HorizontalAlignment="Left" Height="27.333" Stroke="Black" VerticalAlignment="Top" Width="189.333" RadiusY="6.5" RadiusX="6.5" Margin="-12.333,0,-12.667,0"/>
+                            <TextBlock Margin="52.667,6.001,52.333,3.666" TextWrapping="Wrap" Text="Reserveren"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true"/>
+                            <Trigger Property="IsMouseOver" Value="true"/>
+                            <Trigger Property="IsPressed" Value="true"/>
+                            <Trigger Property="IsEnabled" Value="false"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+    <Grid Margin="0,0,-8,-6" Background="#FFFFC426">
+        <Grid x:Name="gdHome" HorizontalAlignment="Left" Height="507" Margin="256,10,0,0" VerticalAlignment="Top" Width="704" Visibility="Hidden">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="43*"/>
+                <ColumnDefinition Width="661*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="186,227,0,0" VerticalAlignment="Top" Width="100"/>
+            <Image Grid.Column="1" HorizontalAlignment="Left" Height="222" Margin="239,105,0,0" VerticalAlignment="Top" Width="221" Source="logo-removebg-preview.jpg"/>
         </Grid>
-        <Grid x:Name="LoginHome" HorizontalAlignment="Left" Height="507" Margin="256,10,0,0" VerticalAlignment="Top" Width="704" Visibility="Hidden">
-            <Label x:Name="loginTitle" Content="Login" HorizontalAlignment="Center" Margin="284,121,36,0" VerticalAlignment="Top" Height="64" Width="384" FontSize="36"/>
-            <TextBox Name="txtUsername" HorizontalAlignment="Left" Height="37" Margin="212,252,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="306"/>
-            <TextBox Name="txtPassword" HorizontalAlignment="Left" Height="37" Margin="212,328,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="306"/>
-            <Button Name="btnSubmit" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Width="155" Margin="284,400,0,0" Height="42" Click="btnSubmit_Click"/>
-            <Button x:Name="btnAnuleren" Content="Annuleren" HorizontalAlignment="Left" Margin="592,10,0,0" VerticalAlignment="Top" Width="76"  Click="btnAnnuleren_Click" />
-            <Label Content="Username:" HorizontalAlignment="Left" Margin="220,221,0,0" VerticalAlignment="Top" Width="113"/>
-            <Label Content="Password:" HorizontalAlignment="Left" Height="27" Margin="212,296,0,0" VerticalAlignment="Top" Width="113"/>
+
+
+        <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="135"  Click="btnLogin_Click" Style="{DynamicResource loginButton}"/>
+        <Button x:Name="btnAnuleren" Content="" HorizontalAlignment="Left" Margin="159,10,0,0" VerticalAlignment="Top" Width="135"  Click="btnAnnuleren_Click"  Style="{DynamicResource ButtonStyle1}" />
+        <Grid x:Name="LoginHome" HorizontalAlignment="Left" Height="507" Margin="256,10,0,0" VerticalAlignment="Top" Width="704" Visibility="Visible">
+            <Button Name="btnSubmit" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Width="155" Margin="277.333,323.96,0,0" Height="42" Click="btnSubmit_Click" Style="{DynamicResource ButtonStyle2}"/>
+            <Rectangle Fill="White" HorizontalAlignment="Left" Height="31" Margin="212,287.96,0,0" RadiusY="16.833" RadiusX="16.833" Stroke="Black" VerticalAlignment="Top" Width="306"/>
+            <Rectangle Fill="White" HorizontalAlignment="Left" Height="31" Margin="210,251.96,0,0" RadiusY="16.833" RadiusX="16.833" Stroke="Black" VerticalAlignment="Top" Width="306"/>
+
+            <Image x:Name="___No_Name_" HorizontalAlignment="Left" Height="158" Margin="287,80,0,0" VerticalAlignment="Top" Width="161" Source="logo-removebg-preview.jpg" Stretch="UniformToFill" IsEnabled="False"/>
+            <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="31" Margin="228,251.96,0,224.04" TextWrapping="Wrap"  VerticalAlignment="Center" Width="270.666" Text="Username" AutomationProperties.IsRowHeader="True" VerticalContentAlignment="Center" BorderBrush="{x:Null}"  PreviewMouseDown="txtUsername_PreviewMouseDown" />
+            <TextBox x:Name="txtPassword" HorizontalAlignment="Left" Height="31" Margin="228,287.96,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="270.666" VerticalContentAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" Text="Password" PreviewMouseDown="txtUsername_PreviewMouseDown" />
         </Grid>
         <Grid x:Name="gdMovie" HorizontalAlignment="Left" Height="507" Margin="299,10,0,0" VerticalAlignment="Top" Width="661" Visibility="Hidden">
             <Image x:Name="imgMoviePicture" HorizontalAlignment="Left" Height="277" Margin="10,10,0,0" VerticalAlignment="Top" Width="252"/>
@@ -32,17 +121,18 @@
             <Label x:Name="lblMovieGenre" Content="" HorizontalAlignment="Left" Margin="316,72,0,0" VerticalAlignment="Top"/>
             <Label x:Name="lblMovieDuration" Content="" HorizontalAlignment="Left" Margin="311,103,0,0" VerticalAlignment="Top"/>
             <Label x:Name="lblMovieDescription" Content="" HorizontalAlignment="Left" Margin="273,165,0,0" VerticalAlignment="Top" Height="102" Width="340"/>
-             <Grid x:Name="gdReservate" Visibility="Visible" HorizontalAlignment="Left" Height="507" VerticalAlignment="Top" Width="661">
-                <Label Content="beschikbare stoelen:" HorizontalAlignment="Left" Margin="169,363,0,0" VerticalAlignment="Top" Width="123"/>
-                <ComboBox x:Name="cmbSessions" HorizontalAlignment="Left" DisplayMemberPath="Date" VerticalAlignment="Top" Width="197" Margin="169,337,0,0" Height="26" SelectionChanged="cmbSessions_SelectionChanged_1"/>
-                <Label x:Name="lblReservationSeats" Content="" HorizontalAlignment="Left" Margin="297,363,0,0" VerticalAlignment="Top" Width="69"/>
-                <Button x:Name="btnReservateSession" Content="Reserveer" HorizontalAlignment="Left" Margin="170,424,0,0" VerticalAlignment="Top" Width="197" Height="26" Click="btnReservateSession_Click"/>
-                <TextBox x:Name="txtSeats" HorizontalAlignment="Left" Height="26" Margin="266,393,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="101"/>
-                <Label Content="Zit plaatsen" HorizontalAlignment="Left" Margin="170,393,0,0" VerticalAlignment="Top" Width="91"/>
+            <Grid x:Name="gdReservate" Visibility="Visible" HorizontalAlignment="Left" Height="507" VerticalAlignment="Top" Width="661">
                 <Label Content="Reserveren" HorizontalAlignment="Left" Margin="170,307,0,0" VerticalAlignment="Top" Width="69"/>
+                <Rectangle Fill="White" HorizontalAlignment="Left" Height="31" Margin="170,332.96,0,0" RadiusY="16.833" RadiusX="16.833" Stroke="Black" VerticalAlignment="Top" Width="197"/>
+                <ComboBox x:Name="cmbSessions" HorizontalAlignment="Left" DisplayMemberPath="Date" VerticalAlignment="Top" Width="162.5" Margin="187.5,332.96,0,0" Height="30.04" SelectionChanged="cmbSessions_SelectionChanged_1" BorderBrush="{x:Null}" Background="{x:Null}"/>
+                <Grid  x:Name="gdSession" Visibility="Hidden">
+                    <Label Content="beschikbare stoelen:" HorizontalAlignment="Left" Margin="169,363,0,0" VerticalAlignment="Top" Width="123"/>
+                    <Label x:Name="lblReservationSeats" Content="" HorizontalAlignment="Left" Margin="297,363,0,0" VerticalAlignment="Top" Width="69"/>
+                    <Button x:Name="btnReservateSession" Content="Reserveer" Style="{DynamicResource ButtonStyle3}" HorizontalAlignment="Left" Margin="188,394,0,0" VerticalAlignment="Top" Width="179" Height="42" Click="btnReservateSession_Click"/>
+                </Grid>
             </Grid>
-           </Grid>
-        <ListView x:Name="lvMovies" HorizontalAlignment="Left" Height="489" Margin="10,10,0,0" VerticalAlignment="Top" Width="284" SelectionChanged="lvMovies_SelectionChanged">
+        </Grid>
+        <ListView x:Name="lvMovies" HorizontalAlignment="Left" Height="457" Margin="10,42,0,0" VerticalAlignment="Top" Width="284" SelectionChanged="lvMovies_SelectionChanged" BorderBrush="White" Background="White">
             <ListView.View>
                 <GridView AllowsColumnReorder="False">
                     <GridViewColumn x:Name="GridViewImage" Header="Image"  Width="100">
@@ -58,7 +148,8 @@
                     <GridViewColumn Width="70" Header="Genre" DisplayMemberBinding="{Binding Genre}" />
                 </GridView>
             </ListView.View>
-        </ListView>       
+        </ListView>
+
 
     </Grid>
 </Window>

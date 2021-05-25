@@ -30,9 +30,6 @@ namespace Cinema_V2
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertHall(Hall instance);
-    partial void UpdateHall(Hall instance);
-    partial void DeleteHall(Hall instance);
     partial void InsertMovie(Movie instance);
     partial void UpdateMovie(Movie instance);
     partial void DeleteMovie(Movie instance);
@@ -42,10 +39,13 @@ namespace Cinema_V2
     partial void InsertReservation(Reservation instance);
     partial void UpdateReservation(Reservation instance);
     partial void DeleteReservation(Reservation instance);
+    partial void InsertHall(Hall instance);
+    partial void UpdateHall(Hall instance);
+    partial void DeleteHall(Hall instance);
     #endregion
 		
 		public DbCinemaDataContext() : 
-				base(global::Cinema_V2.Properties.Settings.Default.dbCinemaConnectionString1, mappingSource)
+				base(global::Cinema_V2.Properties.Settings.Default.dbCinemaConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -74,14 +74,6 @@ namespace Cinema_V2
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Hall> Halls
-		{
-			get
-			{
-				return this.GetTable<Hall>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Movie> Movies
 		{
 			get
@@ -98,6 +90,14 @@ namespace Cinema_V2
 			}
 		}
 		
+		public System.Data.Linq.Table<Reservation> Reservations
+		{
+			get
+			{
+				return this.GetTable<Reservation>();
+			}
+		}
+		
 		public System.Data.Linq.Table<User> Users
 		{
 			get
@@ -106,126 +106,12 @@ namespace Cinema_V2
 			}
 		}
 		
-		public System.Data.Linq.Table<Reservation> Reservations
+		public System.Data.Linq.Table<Hall> Halls
 		{
 			get
 			{
-				return this.GetTable<Reservation>();
+				return this.GetTable<Hall>();
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Hall")]
-	public partial class Hall : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _hId;
-		
-		private System.Nullable<int> _hAmoutSeats;
-		
-		private EntitySet<Session> _Sessions;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnhIdChanging(int value);
-    partial void OnhIdChanged();
-    partial void OnhAmoutSeatsChanging(System.Nullable<int> value);
-    partial void OnhAmoutSeatsChanged();
-    #endregion
-		
-		public Hall()
-		{
-			this._Sessions = new EntitySet<Session>(new Action<Session>(this.attach_Sessions), new Action<Session>(this.detach_Sessions));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_hId", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int hId
-		{
-			get
-			{
-				return this._hId;
-			}
-			set
-			{
-				if ((this._hId != value))
-				{
-					this.OnhIdChanging(value);
-					this.SendPropertyChanging();
-					this._hId = value;
-					this.SendPropertyChanged("hId");
-					this.OnhIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_hAmoutSeats", DbType="Int")]
-		public System.Nullable<int> hAmoutSeats
-		{
-			get
-			{
-				return this._hAmoutSeats;
-			}
-			set
-			{
-				if ((this._hAmoutSeats != value))
-				{
-					this.OnhAmoutSeatsChanging(value);
-					this.SendPropertyChanging();
-					this._hAmoutSeats = value;
-					this.SendPropertyChanged("hAmoutSeats");
-					this.OnhAmoutSeatsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Hall_Session", Storage="_Sessions", ThisKey="hId", OtherKey="hId")]
-		public EntitySet<Session> Sessions
-		{
-			get
-			{
-				return this._Sessions;
-			}
-			set
-			{
-				this._Sessions.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Sessions(Session entity)
-		{
-			this.SendPropertyChanging();
-			entity.Hall = this;
-		}
-		
-		private void detach_Sessions(Session entity)
-		{
-			this.SendPropertyChanging();
-			entity.Hall = null;
 		}
 	}
 	
@@ -501,11 +387,11 @@ namespace Cinema_V2
 		
 		private System.DateTime _sDate;
 		
-		private EntityRef<Hall> _Hall;
-		
 		private EntityRef<Movie> _Movie;
 		
 		private EntityRef<Reservation> _Reservation;
+		
+		private EntityRef<Hall> _Hall;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -523,9 +409,9 @@ namespace Cinema_V2
 		
 		public Session()
 		{
-			this._Hall = default(EntityRef<Hall>);
 			this._Movie = default(EntityRef<Movie>);
 			this._Reservation = default(EntityRef<Reservation>);
+			this._Hall = default(EntityRef<Hall>);
 			OnCreated();
 		}
 		
@@ -621,40 +507,6 @@ namespace Cinema_V2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Hall_Session", Storage="_Hall", ThisKey="hId", OtherKey="hId", IsForeignKey=true)]
-		public Hall Hall
-		{
-			get
-			{
-				return this._Hall.Entity;
-			}
-			set
-			{
-				Hall previousValue = this._Hall.Entity;
-				if (((previousValue != value) 
-							|| (this._Hall.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Hall.Entity = null;
-						previousValue.Sessions.Remove(this);
-					}
-					this._Hall.Entity = value;
-					if ((value != null))
-					{
-						value.Sessions.Add(this);
-						this._hId = value.hId;
-					}
-					else
-					{
-						this._hId = default(int);
-					}
-					this.SendPropertyChanged("Hall");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Movie_Session", Storage="_Movie", ThisKey="mId", OtherKey="mId", IsForeignKey=true)]
 		public Movie Movie
 		{
@@ -723,6 +575,40 @@ namespace Cinema_V2
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Hall_Session", Storage="_Hall", ThisKey="hId", OtherKey="hId", IsForeignKey=true)]
+		public Hall Hall
+		{
+			get
+			{
+				return this._Hall.Entity;
+			}
+			set
+			{
+				Hall previousValue = this._Hall.Entity;
+				if (((previousValue != value) 
+							|| (this._Hall.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Hall.Entity = null;
+						previousValue.Sessions.Remove(this);
+					}
+					this._Hall.Entity = value;
+					if ((value != null))
+					{
+						value.Sessions.Add(this);
+						this._hId = value.hId;
+					}
+					else
+					{
+						this._hId = default(int);
+					}
+					this.SendPropertyChanged("Hall");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -740,69 +626,6 @@ namespace Cinema_V2
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[User]")]
-	public partial class User
-	{
-		
-		private System.Nullable<int> _uId;
-		
-		private string _Username;
-		
-		private string _Password;
-		
-		public User()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_uId", DbType="Int")]
-		public System.Nullable<int> uId
-		{
-			get
-			{
-				return this._uId;
-			}
-			set
-			{
-				if ((this._uId != value))
-				{
-					this._uId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Username", DbType="VarChar(50)")]
-		public string Username
-		{
-			get
-			{
-				return this._Username;
-			}
-			set
-			{
-				if ((this._Username != value))
-				{
-					this._Username = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="VarChar(50)")]
-		public string Password
-		{
-			get
-			{
-				return this._Password;
-			}
-			set
-			{
-				if ((this._Password != value))
-				{
-					this._Password = value;
-				}
 			}
 		}
 	}
@@ -966,6 +789,303 @@ namespace Cinema_V2
 		{
 			this.SendPropertyChanging();
 			entity.Reservation = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[User]")]
+	public partial class User
+	{
+		
+		private System.Nullable<int> _UserID;
+		
+		private string _Username;
+		
+		private string _Password;
+		
+		public User()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="Int")]
+		public System.Nullable<int> UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					this._UserID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Username", DbType="VarChar(50)")]
+		public string Username
+		{
+			get
+			{
+				return this._Username;
+			}
+			set
+			{
+				if ((this._Username != value))
+				{
+					this._Username = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="VarChar(50)")]
+		public string Password
+		{
+			get
+			{
+				return this._Password;
+			}
+			set
+			{
+				if ((this._Password != value))
+				{
+					this._Password = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Hall")]
+	public partial class Hall : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _hId;
+		
+		private System.Nullable<int> _hAmoutSeats;
+		
+		private System.Nullable<int> _hAmountRows;
+		
+		private System.Nullable<int> _hStairs1;
+		
+		private System.Nullable<int> _hStairs2;
+		
+		private System.Nullable<int> _hStairs3;
+		
+		private System.Nullable<int> _hStairs4;
+		
+		private EntitySet<Session> _Sessions;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnhIdChanging(int value);
+    partial void OnhIdChanged();
+    partial void OnhAmoutSeatsChanging(System.Nullable<int> value);
+    partial void OnhAmoutSeatsChanged();
+    partial void OnhAmountRowsChanging(System.Nullable<int> value);
+    partial void OnhAmountRowsChanged();
+    partial void OnhStairs1Changing(System.Nullable<int> value);
+    partial void OnhStairs1Changed();
+    partial void OnhStairs2Changing(System.Nullable<int> value);
+    partial void OnhStairs2Changed();
+    partial void OnhStairs3Changing(System.Nullable<int> value);
+    partial void OnhStairs3Changed();
+    partial void OnhStairs4Changing(System.Nullable<int> value);
+    partial void OnhStairs4Changed();
+    #endregion
+		
+		public Hall()
+		{
+			this._Sessions = new EntitySet<Session>(new Action<Session>(this.attach_Sessions), new Action<Session>(this.detach_Sessions));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_hId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int hId
+		{
+			get
+			{
+				return this._hId;
+			}
+			set
+			{
+				if ((this._hId != value))
+				{
+					this.OnhIdChanging(value);
+					this.SendPropertyChanging();
+					this._hId = value;
+					this.SendPropertyChanged("hId");
+					this.OnhIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_hAmoutSeats", DbType="Int")]
+		public System.Nullable<int> hAmoutSeats
+		{
+			get
+			{
+				return this._hAmoutSeats;
+			}
+			set
+			{
+				if ((this._hAmoutSeats != value))
+				{
+					this.OnhAmoutSeatsChanging(value);
+					this.SendPropertyChanging();
+					this._hAmoutSeats = value;
+					this.SendPropertyChanged("hAmoutSeats");
+					this.OnhAmoutSeatsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_hAmountRows", DbType="Int")]
+		public System.Nullable<int> hAmountRows
+		{
+			get
+			{
+				return this._hAmountRows;
+			}
+			set
+			{
+				if ((this._hAmountRows != value))
+				{
+					this.OnhAmountRowsChanging(value);
+					this.SendPropertyChanging();
+					this._hAmountRows = value;
+					this.SendPropertyChanged("hAmountRows");
+					this.OnhAmountRowsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_hStairs1", DbType="Int")]
+		public System.Nullable<int> hStairs1
+		{
+			get
+			{
+				return this._hStairs1;
+			}
+			set
+			{
+				if ((this._hStairs1 != value))
+				{
+					this.OnhStairs1Changing(value);
+					this.SendPropertyChanging();
+					this._hStairs1 = value;
+					this.SendPropertyChanged("hStairs1");
+					this.OnhStairs1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_hStairs2", DbType="Int")]
+		public System.Nullable<int> hStairs2
+		{
+			get
+			{
+				return this._hStairs2;
+			}
+			set
+			{
+				if ((this._hStairs2 != value))
+				{
+					this.OnhStairs2Changing(value);
+					this.SendPropertyChanging();
+					this._hStairs2 = value;
+					this.SendPropertyChanged("hStairs2");
+					this.OnhStairs2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_hStairs3", DbType="Int")]
+		public System.Nullable<int> hStairs3
+		{
+			get
+			{
+				return this._hStairs3;
+			}
+			set
+			{
+				if ((this._hStairs3 != value))
+				{
+					this.OnhStairs3Changing(value);
+					this.SendPropertyChanging();
+					this._hStairs3 = value;
+					this.SendPropertyChanged("hStairs3");
+					this.OnhStairs3Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_hStairs4", DbType="Int")]
+		public System.Nullable<int> hStairs4
+		{
+			get
+			{
+				return this._hStairs4;
+			}
+			set
+			{
+				if ((this._hStairs4 != value))
+				{
+					this.OnhStairs4Changing(value);
+					this.SendPropertyChanging();
+					this._hStairs4 = value;
+					this.SendPropertyChanged("hStairs4");
+					this.OnhStairs4Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Hall_Session", Storage="_Sessions", ThisKey="hId", OtherKey="hId")]
+		public EntitySet<Session> Sessions
+		{
+			get
+			{
+				return this._Sessions;
+			}
+			set
+			{
+				this._Sessions.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Sessions(Session entity)
+		{
+			this.SendPropertyChanging();
+			entity.Hall = this;
+		}
+		
+		private void detach_Sessions(Session entity)
+		{
+			this.SendPropertyChanging();
+			entity.Hall = null;
 		}
 	}
 }

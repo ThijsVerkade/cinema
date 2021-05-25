@@ -1,0 +1,77 @@
+﻿<Window x:Class="Cinema_V2.cinemaHall"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cinema_V2"
+        mc:Ignorable="d"
+        Title="Cinema hall" Width="auto" Height="auto"
+         Background="#FFFFC426">
+    <Window.Resources>
+        <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid HorizontalAlignment="Left" Height="27.333" Width="127.667">
+                            <Rectangle Fill="#FFFFC426" HorizontalAlignment="Left" Height="27.333" Stroke="Black" VerticalAlignment="Top" Width="127.667" RadiusY="6.5" RadiusX="6.5"/>
+                            <TextBlock Margin="43.668,5.333,45.999,4.334" TextWrapping="Wrap" Text="Cancel"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true"/>
+                            <Trigger Property="IsMouseOver" Value="true"/>
+                            <Trigger Property="IsPressed" Value="true"/>
+                            <Trigger Property="IsEnabled" Value="false"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonStyle2" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid HorizontalAlignment="Left" Height="27.333" Width="127.667">
+                            <Rectangle Fill="#FFFFC426" HorizontalAlignment="Left" Height="27.333" Stroke="Black" VerticalAlignment="Top" Width="127.667" RadiusY="6.5" RadiusX="6.5"/>
+                            <TextBlock Margin="29.667,5.333,25.999,4.334" TextWrapping="Wrap" Text="Koop Tickets"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true"/>
+                            <Trigger Property="IsMouseOver" Value="true"/>
+                            <Trigger Property="IsPressed" Value="true"/>
+                            <Trigger Property="IsEnabled" Value="false"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+    <Grid>
+        <Grid Margin="28,1,32,91">
+            <Grid Name="gdSeats" Width="auto" Height="auto" Margin="0,10,0,-83" VerticalAlignment="Top"  >
+
+
+
+            </Grid>
+
+        </Grid>
+        <Button Content="Button" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Width="133" Style="{DynamicResource ButtonStyle1}" Height="38" Click="Button_Click" Margin="10,0,0,0"/>
+        <Button Content="Button" HorizontalAlignment="Right"  VerticalAlignment="Bottom" Width="130"  Style="{DynamicResource ButtonStyle2}" Height="38" Click="Button_Click_1" Margin="0,0,10,0"  />
+    </Grid>
+</Window>

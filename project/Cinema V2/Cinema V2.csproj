@@ -55,6 +55,8 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -73,7 +75,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CinemaHall.xaml.cs">
+      <DependentUpon>CinemaHall.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="classes\HallGenerator.cs" />
+    <Compile Include="classes\MainwindowHelper.cs" />
+    <Compile Include="classes\SeatListHelper.cs" />
     <Page Include="AdminInlog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CinemaButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CinemaHall.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -106,6 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="models\MovieList.cs" />
+    <Compile Include="models\SeatList.cs" />
     <Compile Include="models\SessionList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -151,7 +168,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>DatabaseServiceCinema.mdf</DependentUpon>
     </Content>
-    <Resource Include="test.png" />
+    <Resource Include="logo-removebg-preview.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

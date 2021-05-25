@@ -20,13 +20,13 @@ namespace Cinema_V2.classes
             dbHelper = new CinemaDatabase(database);
         }
 
-        public int Create(int seats, int sId, string date)
+        public int Create(int seatsNummer, int sId, string date = null)
         {
             //Creating Object
             Reservation r = new Reservation();
             //Filling Object
             r.rId = db.Reservations.Max(u => u.rId) + 1;
-            r.rSeat = seats;
+            r.rSeat = seatsNummer;
             r.sId = sId;
             //r.rDate = new DateTime();
             this.db.Reservations.InsertOnSubmit(r);
@@ -79,13 +79,14 @@ namespace Cinema_V2.classes
         public int ReadReservationSeats(int rId)
         {
             List<Reservation> tr = (from u in this.db.Reservations where u.sId == rId select u).ToList();
-            int seats = 0;
 
-            foreach (Reservation item in tr){
-                seats = seats + item.rSeat;
-            }
+            return tr.Count();
+        }
 
-            return seats;
+        public bool CheckReservationSeat(int sId, int sNummer)
+        {
+            List<Reservation> tr = (from u in this.db.Reservations where u.sId == sId &&  u.rSeat == sNummer select u).ToList();
+            return (tr.Count > 0);
         }
     }
 }

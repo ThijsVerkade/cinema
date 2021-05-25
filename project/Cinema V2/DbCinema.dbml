@@ -1,12 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dbCinema" Class="DbCinemaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-KK33E21;Initial Catalog=dbCinema;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False" SettingsObjectName="Cinema_V2.Properties.Settings" SettingsPropertyName="dbCinemaConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Hall" Member="Halls">
-    <Type Name="Hall">
-      <Column Name="hId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="hAmoutSeats" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Hall_Session" Member="Sessions" ThisKey="hId" OtherKey="hId" Type="Session" />
-    </Type>
-  </Table>
   <Table Name="dbo.Movie" Member="Movies">
     <Type Name="Movie">
       <Column Name="mId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -26,16 +19,9 @@
       <Column Name="hId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="mId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="sDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Association Name="Hall_Session" Member="Hall" ThisKey="hId" OtherKey="hId" Type="Hall" IsForeignKey="true" />
       <Association Name="Movie_Session" Member="Movie" ThisKey="mId" OtherKey="mId" Type="Movie" IsForeignKey="true" />
       <Association Name="Reservation_Session" Member="Reservation" ThisKey="sId" OtherKey="sId" Type="Reservation" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.[User]" Member="Users">
-    <Type Name="User">
-      <Column Name="UserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Username" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Hall_Session" Member="Hall" ThisKey="hId" OtherKey="hId" Type="Hall" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Reservation" Member="Reservations">
@@ -45,6 +31,25 @@
       <Column Name="sId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="rDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Association Name="Reservation_Session" Member="Sessions" ThisKey="sId" OtherKey="sId" Type="Session" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[User]" Member="Users">
+    <Type Name="User">
+      <Column Name="UserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Username" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Hall" Member="Halls">
+    <Type Name="Hall">
+      <Column Name="hId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="hAmoutSeats" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="hAmountRows" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="hStairs1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="hStairs2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="hStairs3" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="hStairs4" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Hall_Session" Member="Sessions" ThisKey="hId" OtherKey="hId" Type="Session" />
     </Type>
   </Table>
 </Database>
