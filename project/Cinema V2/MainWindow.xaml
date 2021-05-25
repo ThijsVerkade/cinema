@@ -88,7 +88,7 @@
 
     </Window.Resources>
     <Grid Margin="0,0,-8,-6" Background="#FFFFC426">
-        <Grid x:Name="gdHome" HorizontalAlignment="Left" Height="507" Margin="256,10,0,0" VerticalAlignment="Top" Width="704" Visibility="Hidden">
+        <Grid x:Name="gdHome" HorizontalAlignment="Left" Height="507" Margin="256,10,0,0" VerticalAlignment="Top" Width="704" Visibility="Visible">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="43*"/>
                 <ColumnDefinition Width="661*"/>
@@ -100,7 +100,7 @@
 
         <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="135"  Click="btnLogin_Click" Style="{DynamicResource loginButton}"/>
         <Button x:Name="btnAnuleren" Content="" HorizontalAlignment="Left" Margin="159,10,0,0" VerticalAlignment="Top" Width="135"  Click="btnAnnuleren_Click"  Style="{DynamicResource ButtonStyle1}" />
-        <Grid x:Name="LoginHome" HorizontalAlignment="Left" Height="507" Margin="256,10,0,0" VerticalAlignment="Top" Width="704" Visibility="Visible">
+        <Grid x:Name="LoginHome" HorizontalAlignment="Left" Height="507" Margin="256,10,0,0" VerticalAlignment="Top" Width="704" Visibility="Hidden">
             <Button Name="btnSubmit" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Width="155" Margin="277.333,323.96,0,0" Height="42" Click="btnSubmit_Click" Style="{DynamicResource ButtonStyle2}"/>
             <Rectangle Fill="White" HorizontalAlignment="Left" Height="31" Margin="212,287.96,0,0" RadiusY="16.833" RadiusX="16.833" Stroke="Black" VerticalAlignment="Top" Width="306"/>
             <Rectangle Fill="White" HorizontalAlignment="Left" Height="31" Margin="210,251.96,0,0" RadiusY="16.833" RadiusX="16.833" Stroke="Black" VerticalAlignment="Top" Width="306"/>
