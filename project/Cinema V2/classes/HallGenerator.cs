@@ -18,7 +18,7 @@ namespace Cinema_V2.classes
             SeatLists = sl;
         }
 
-        public Button GenerateButton(string content, string name, StackPanel stackPnl) {
+        public Button generateButton(string content, string name, StackPanel stackPnl, RoutedEventHandler btnSeat_Clicked) {
             Button btn = new Button();
             btn.Content = content;
             btn.Name = name;
@@ -29,7 +29,7 @@ namespace Cinema_V2.classes
             return btn;
         }
 
-        public static Image GenerateImage(BitmapImage source)
+        public static Image generateImage(BitmapImage source)
         {
             Image img = new Image();
             img.Stretch = Stretch.Uniform;
@@ -38,7 +38,7 @@ namespace Cinema_V2.classes
             return img;
         }
 
-        public static StackPanel GenerateStackPanel(Image img)
+        public static StackPanel generateStackPanel(Image img)
         {
             StackPanel stackPnl = new StackPanel();
             stackPnl.Children.Add(img);
@@ -46,7 +46,7 @@ namespace Cinema_V2.classes
             return stackPnl;
         }
 
-        public static void GenerateHall(Grid gdSeats, int colAmount, int rowAmount) {
+        public static void generateHall(Grid gdSeats, int colAmount, int rowAmount) {
             for (int i = 0; i < colAmount; i++)
             {
                 ColumnDefinition colDef = new ColumnDefinition();
@@ -62,49 +62,16 @@ namespace Cinema_V2.classes
             }
         }
 
-        public static void GenerateGridButton(Button btn, Grid grid, int y, int x) {
+        public static void generateGridButton(Button btn, Grid grid, int y, int x) {
             Grid.SetColumn(btn, y);
             Grid.SetRow(btn, x);
             grid.Children.Add(btn);
         }
 
-        public static void GenerateGridImage(Image img, Grid grid, int y, int x) {
+        public static void generateGridImage(Image img, Grid grid, int y, int x) {
             Grid.SetColumn(img, y);
             Grid.SetRow(img, x);
             grid.Children.Add(img);
         }
-
-        private void btnSeat_Clicked(object sender, EventArgs e)
-        {
-            BitmapImage source;
-            Button clicked = (Button)sender;
-            int name = Convert.ToInt32(clicked.Name.Replace("Button", ""));
-
-            models.SeatList res = SeatLists.Find(x => x.Id == name);
-            if (res.Reserved == false)
-            {
-                if (res.Selected == false)
-                {
-                    source = new BitmapImage(new Uri(@"C:\Users\Thijs\source\repos\ThijsVerkade\cinema\project\Cinema V2\images\seats-green.jpg"));
-                    res.Selected = true;
-                }
-                else
-                {
-                    source = new BitmapImage(new Uri(@"C:\Users\Thijs\source\repos\ThijsVerkade\cinema\project\Cinema V2\images\seats.jpg"));
-                    res.Selected = false;
-                }
-
-                Image img = GenerateImage(source);
-
-                StackPanel stackPnl = GenerateStackPanel(img);
-
-                clicked.Content = stackPnl;
-            }
-            else
-            {
-                MessageBox.Show("This seat is reserved!");
-            }
-        }
-
     }
 }

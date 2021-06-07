@@ -33,7 +33,7 @@ namespace Cinema_V2.classes
             this.db.Movies.InsertOnSubmit(m);
 
             //Updating Database
-            dbHelper.SubmitChanges();
+            dbHelper.submitChanges();
 
             //Returning Movie ID
             return m.mId;
@@ -48,7 +48,7 @@ namespace Cinema_V2.classes
             this.db.Movies.DeleteOnSubmit(m);
 
             //Updating Database
-            return dbHelper.SubmitChanges();
+            return dbHelper.submitChanges();
         }
         public int Edit(int id, string title, string description, string pictureUrl, string videoUrl)
         {
@@ -62,7 +62,7 @@ namespace Cinema_V2.classes
             m.mVideoUrl = videoUrl;
 
             //Updating Database
-            dbHelper.SubmitChanges();
+            dbHelper.submitChanges();
 
             //Returning Movie ID
             return m.mId;
@@ -77,6 +77,27 @@ namespace Cinema_V2.classes
         {
             //Returning All Object
             return this.db.Movies.ToList();
-        }       
+        }
+
+        public List<MovieList> SearchMovie( string search)
+        {
+            //Returning Selected Object
+            List<Movie> mList = (from u in db.Movies where u.mTitle.Contains(search) select u).ToList();
+            List<MovieList> movieLists = new List<MovieList>();
+
+            foreach (Movie m in mList)
+            {
+                MovieList ml = new MovieList();
+                ml.Image = @"C:\Users\thijs\source\repos\ThijsVerkade\cinema\project\Cinema V2\images" + m.mPictureUrl;  //Fix this 
+                ml.Name = m.mTitle;
+                ml.Genre = m.mGenre;
+                ml.Id = m.mId;
+                movieLists.Add(ml);
+            }
+
+            return movieLists;
+
+        }
+
     }
 }

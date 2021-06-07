@@ -38,7 +38,7 @@ namespace Cinema_V2
             int row;
             BitmapImage source;
 
-            classes.HallGenerator.GenerateHall(
+            classes.HallGenerator.generateHall(
                 gdSeats,
                 Convert.ToInt32(h.hAmountRows),
                 Convert.ToInt32((h.hAmoutSeats / h.hAmountRows + 1))
@@ -49,8 +49,6 @@ namespace Cinema_V2
                     row = j + 1;
 
                     if (row != h.hStairs1 && row != h.hStairs2 && row != h.hStairs3 && row != h.hStairs4){
-
-
                         bool reserved = ReservationHelper.CheckReservationSeat(sId, count);
 
                         classes.SeatListHelper.create(SeatLists, Convert.ToInt32(count), reserved);
@@ -61,21 +59,22 @@ namespace Cinema_V2
                         else {
                             source = new BitmapImage(new Uri(@"C:\Users\Thijs\source\repos\ThijsVerkade\cinema\project\Cinema V2\images\seats.jpg"));
                         }
-                        Image img = classes.HallGenerator.GenerateImage(source);
 
-                        StackPanel stackPnl = classes.HallGenerator.GenerateStackPanel(img);
+                        Image img = classes.HallGenerator.generateImage(source);
 
-                        Button btn = HallGeneratorHelper.GenerateButton(count.ToString(), "Button" + count.ToString(), stackPnl);
+                        StackPanel stackPnl = classes.HallGenerator.generateStackPanel(img);
 
-                        classes.HallGenerator.GenerateGridButton(btn, gdSeats, j, i);
+                        Button btn = HallGeneratorHelper.generateButton(count.ToString(), "Button" + count.ToString(), stackPnl, btnSeat_Clicked);
+
+                        classes.HallGenerator.generateGridButton(btn, gdSeats, j, i);
 
                         count++;
                     } else {
                         source = new BitmapImage(new Uri(@"C:\Users\Thijs\source\repos\ThijsVerkade\cinema\project\Cinema V2\images\stairs.jpg"));
 
-                        Image img = classes.HallGenerator.GenerateImage(source);
+                        Image img = classes.HallGenerator.generateImage(source);
 
-                        classes.HallGenerator.GenerateGridImage(img, gdSeats, j, i);
+                        classes.HallGenerator.generateGridImage(img, gdSeats, j, i);
                     }
                     amountRows++;
                 }
@@ -101,5 +100,38 @@ namespace Cinema_V2
             MessageBox.Show("Your tickets has been reserverd");
             this.Close();
         }
+
+        private void btnSeat_Clicked(object sender, EventArgs e)
+        {
+            BitmapImage source;
+            Button clicked = (Button)sender;
+            int name = Convert.ToInt32(clicked.Name.Replace("Button", ""));
+
+            models.SeatList res = SeatLists.Find(x => x.Id == name);
+            if (res.Reserved == false)
+            {
+                if (res.Selected == false)
+                {
+                    source = new BitmapImage(new Uri(@"C:\Users\Thijs\source\repos\ThijsVerkade\cinema\project\Cinema V2\images\seats-green.jpg"));
+                    res.Selected = true;
+                }
+                else
+                {
+                    source = new BitmapImage(new Uri(@"C:\Users\Thijs\source\repos\ThijsVerkade\cinema\project\Cinema V2\images\seats.jpg"));
+                    res.Selected = false;
+                }
+
+                Image img = classes.HallGenerator.generateImage(source);
+
+                StackPanel stackPnl = classes.HallGenerator.generateStackPanel(img);
+
+                clicked.Content = stackPnl;
+            }
+            else
+            {
+                MessageBox.Show("This seat is reserved!");
+            }
+        }
+
     }
 }

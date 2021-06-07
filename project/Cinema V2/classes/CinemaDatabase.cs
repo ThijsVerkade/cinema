@@ -15,7 +15,7 @@ namespace Cinema_V2.classes
             this.db = Database;
         }
 
-        public bool SubmitChanges()
+        public bool submitChanges()
         {
             try
             {

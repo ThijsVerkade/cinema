@@ -8,6 +8,10 @@ namespace Cinema_V2.classes
 {
     class SeatListHelper
     {
+        public SeatListHelper() { 
+        
+        }
+
         public static void create(List<models.SeatList> SeatLists, int id, bool reserved) {
             models.SeatList sl = new models.SeatList();
             sl.Id = id;

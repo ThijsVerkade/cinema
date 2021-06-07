@@ -132,7 +132,7 @@
                 </Grid>
             </Grid>
         </Grid>
-        <ListView x:Name="lvMovies" HorizontalAlignment="Left" Height="457" Margin="10,42,0,0" VerticalAlignment="Top" Width="284" SelectionChanged="lvMovies_SelectionChanged" BorderBrush="White" Background="White">
+        <ListView x:Name="lvMovies" HorizontalAlignment="Left" Height="424" Margin="10,75,0,0" VerticalAlignment="Top" Width="284" SelectionChanged="lvMovies_SelectionChanged" BorderBrush="White" Background="White">
             <ListView.View>
                 <GridView AllowsColumnReorder="False">
                     <GridViewColumn x:Name="GridViewImage" Header="Image"  Width="100">
@@ -149,6 +149,8 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <TextBox x:Name="searchMovie" HorizontalAlignment="Left" Height="23" Margin="90,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" TextChanged="TextBox_TextChanged"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,50,0,0" TextWrapping="Wrap" Text="Search:" VerticalAlignment="Top"/>
 
 
     </Grid>

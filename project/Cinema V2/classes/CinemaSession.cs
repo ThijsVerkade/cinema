@@ -31,7 +31,7 @@ namespace Cinema_V2.classes
             this.db.Sessions.InsertOnSubmit(r);
 
             //Updating Database
-            dbHelper.SubmitChanges();
+            dbHelper.submitChanges();
 
             //Returning Session ID
             return r.sId;
@@ -46,7 +46,7 @@ namespace Cinema_V2.classes
             this.db.Sessions.DeleteOnSubmit(r);
 
             //Updating Database
-            return dbHelper.SubmitChanges();
+            return dbHelper.submitChanges();
         }
         public int Edit(int sId, int hId, int mId,string sDate)
         {
@@ -60,7 +60,7 @@ namespace Cinema_V2.classes
             r.sDate = Convert.ToDateTime(sDate);
 
             //Updating Database
-            dbHelper.SubmitChanges();
+            dbHelper.submitChanges();
 
             //Returning Session ID
             return r.sId;

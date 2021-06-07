@@ -27,6 +27,7 @@ namespace Cinema_V2
         private classes.CinemaUser userHelper;
         private List<MovieList> movieLists;
         private List<models.SessionList> SessionLists;
+        private (int, string) dataTuple;
 
 
         public MainWindow()
@@ -41,6 +42,10 @@ namespace Cinema_V2
 
             movieLists = new List<MovieList>();
             lvMovies.ItemsSource = classes.MainwindowHelper.FillMovie(movieLists, movieHelper);
+
+            dataTuple = (
+                    1, "Username or password Incorrect!"
+                );
         }
 
         private void lvMovies_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -122,7 +127,7 @@ namespace Cinema_V2
             }
             else
             {
-                MessageBox.Show("Username or password Incorrect!");
+                MessageBox.Show(dataTuple.Item2);
             }
         }
 
@@ -137,6 +142,12 @@ namespace Cinema_V2
         {
             TextBox tb = (TextBox)sender;
             tb.Text = string.Empty;
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            lvMovies.SelectedIndex = -1;
+            lvMovies.ItemsSource = movieHelper.SearchMovie(searchMovie.Text);
         }
     }
 }

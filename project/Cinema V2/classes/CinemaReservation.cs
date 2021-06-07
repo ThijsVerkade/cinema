@@ -32,7 +32,7 @@ namespace Cinema_V2.classes
             this.db.Reservations.InsertOnSubmit(r);
 
             //Updating Database
-            dbHelper.SubmitChanges();
+            dbHelper.submitChanges();
 
             //Returning Reservation ID
             return r.rId;
@@ -47,7 +47,7 @@ namespace Cinema_V2.classes
             this.db.Reservations.DeleteOnSubmit(r);
 
             //Updating Database
-            return dbHelper.SubmitChanges();
+            return dbHelper.submitChanges();
         }
         public int Edit(int id, int seats, int sId)
         {
@@ -59,7 +59,7 @@ namespace Cinema_V2.classes
             r.sId = sId;
 
             //Updating Database
-            dbHelper.SubmitChanges();
+            dbHelper.submitChanges();
 
             //Returning Reservation ID
             return r.sId;

@@ -30,7 +30,7 @@ namespace Cinema_V2.classes
             this.db.Halls.InsertOnSubmit(h);
 
             //Updating Database
-            dbHelper.SubmitChanges();
+            dbHelper.submitChanges();
 
             //Returning Hall ID
             return h.hId;
@@ -45,7 +45,7 @@ namespace Cinema_V2.classes
             this.db.Halls.DeleteOnSubmit(h);
 
             //Updating Database
-            return dbHelper.SubmitChanges();
+            return dbHelper.submitChanges();
         }
         public int Edit(int id, int seats)
         {
@@ -56,7 +56,7 @@ namespace Cinema_V2.classes
             h.hAmoutSeats = seats;
 
             //Updating Database
-            dbHelper.SubmitChanges();
+            dbHelper.submitChanges();
 
             //Returning Hall ID
             return h.hId;
