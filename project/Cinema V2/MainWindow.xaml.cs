@@ -118,7 +118,7 @@ namespace Cinema_V2
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e) {
             string checkUsername = txtUsername.Text; // capture input van de velden
-            string checkPassword = txtPassword.Text;
+            string checkPassword = txtPassword.Password;
 
             if (userHelper.Readone(checkUsername, checkPassword) == true) // checkt of de waarde van de velden kloppen
             {

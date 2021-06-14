@@ -9,6 +9,7 @@ namespace Cinema_V2
     class MovieList
     {
         public int Id { get; set; }
+
         public string Image { get; set; }
 
         public string Name { get; set; }

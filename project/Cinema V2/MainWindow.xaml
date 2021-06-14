@@ -102,12 +102,18 @@
         <Button x:Name="btnAnuleren" Content="" HorizontalAlignment="Left" Margin="159,10,0,0" VerticalAlignment="Top" Width="135"  Click="btnAnnuleren_Click"  Style="{DynamicResource ButtonStyle1}" />
         <Grid x:Name="LoginHome" HorizontalAlignment="Left" Height="507" Margin="256,10,0,0" VerticalAlignment="Top" Width="704" Visibility="Hidden">
             <Button Name="btnSubmit" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Width="155" Margin="277.333,323.96,0,0" Height="42" Click="btnSubmit_Click" Style="{DynamicResource ButtonStyle2}"/>
-            <Rectangle Fill="White" HorizontalAlignment="Left" Height="31" Margin="212,287.96,0,0" RadiusY="16.833" RadiusX="16.833" Stroke="Black" VerticalAlignment="Top" Width="306"/>
-            <Rectangle Fill="White" HorizontalAlignment="Left" Height="31" Margin="210,251.96,0,0" RadiusY="16.833" RadiusX="16.833" Stroke="Black" VerticalAlignment="Top" Width="306"/>
+            <Rectangle Fill="White" HorizontalAlignment="Left" Height="31" Margin="210,288,0,0" RadiusY="16.833" RadiusX="16.833" Stroke="Black" VerticalAlignment="Top" Width="306"/>
+            <Rectangle Fill="White" HorizontalAlignment="Left" Height="31" Margin="210,230,0,0" RadiusY="16.833" RadiusX="16.833" Stroke="Black" VerticalAlignment="Top" Width="306"/>
 
-            <Image x:Name="___No_Name_" HorizontalAlignment="Left" Height="158" Margin="287,80,0,0" VerticalAlignment="Top" Width="161" Source="logo-removebg-preview.jpg" Stretch="UniformToFill" IsEnabled="False"/>
-            <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="31" Margin="228,251.96,0,224.04" TextWrapping="Wrap"  VerticalAlignment="Center" Width="270.666" Text="Username" AutomationProperties.IsRowHeader="True" VerticalContentAlignment="Center" BorderBrush="{x:Null}"  PreviewMouseDown="txtUsername_PreviewMouseDown" />
-            <TextBox x:Name="txtPassword" HorizontalAlignment="Left" Height="31" Margin="228,287.96,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="270.666" VerticalContentAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" Text="Password" PreviewMouseDown="txtUsername_PreviewMouseDown" />
+            <Image x:Name="___No_Name_" HorizontalAlignment="Left" Height="158" Margin="286,59,0,0" VerticalAlignment="Top" Width="161" Source="logo-removebg-preview.jpg" Stretch="UniformToFill" IsEnabled="False"/>
+            <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="31" Margin="228,230,0,246" TextWrapping="Wrap"  VerticalAlignment="Center" Width="271" AutomationProperties.IsRowHeader="True" VerticalContentAlignment="Center" BorderBrush="{x:Null}"  PreviewMouseDown="txtUsername_PreviewMouseDown" />
+            <PasswordBox Width="270.666" Height="31" Margin="228,288,205,188"  VerticalAlignment="Center" BorderBrush="{x:Null}" 
+                         VerticalContentAlignment="Center"
+         Name="txtPassword" 
+         MaxLength="25" PasswordChar="*" 
+         />
+            <Label Content="Username" HorizontalAlignment="Left" Margin="329,204,0,0" VerticalAlignment="Top"/>
+            <Label Content="Password" HorizontalAlignment="Left" Margin="332,264,0,0" VerticalAlignment="Top" Height="24"/>
         </Grid>
         <Grid x:Name="gdMovie" HorizontalAlignment="Left" Height="507" Margin="299,10,0,0" VerticalAlignment="Top" Width="661" Visibility="Hidden">
             <Image x:Name="imgMoviePicture" HorizontalAlignment="Left" Height="277" Margin="10,10,0,0" VerticalAlignment="Top" Width="252"/>
@@ -117,9 +123,9 @@
             <Label Content="Duur:" HorizontalAlignment="Left" Margin="267,103,0,0" VerticalAlignment="Top"/>
             <Label Content="Beschrijving:" HorizontalAlignment="Left" Margin="267,134,0,0" VerticalAlignment="Top"/>
             <Label x:Name="lblMovieDate" Content="Uitgebrachte datum:" HorizontalAlignment="Left" Margin="391,10,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="lblMovieTitle" Content="Title:" HorizontalAlignment="Left" Margin="307,41,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="lblMovieTitle" Content="" HorizontalAlignment="Left" Margin="316,41,0,0" VerticalAlignment="Top"/>
             <Label x:Name="lblMovieGenre" Content="" HorizontalAlignment="Left" Margin="316,72,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="lblMovieDuration" Content="" HorizontalAlignment="Left" Margin="311,103,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="lblMovieDuration" Content="" HorizontalAlignment="Left" Margin="316,103,0,0" VerticalAlignment="Top"/>
             <Label x:Name="lblMovieDescription" Content="" HorizontalAlignment="Left" Margin="273,165,0,0" VerticalAlignment="Top" Height="102" Width="340"/>
             <Grid x:Name="gdReservate" Visibility="Visible" HorizontalAlignment="Left" Height="507" VerticalAlignment="Top" Width="661">
                 <Label Content="Reserveren" HorizontalAlignment="Left" Margin="170,307,0,0" VerticalAlignment="Top" Width="69"/>
@@ -149,8 +155,8 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <TextBox x:Name="searchMovie" HorizontalAlignment="Left" Height="23" Margin="90,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" TextChanged="TextBox_TextChanged"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,50,0,0" TextWrapping="Wrap" Text="Search:" VerticalAlignment="Top"/>
+        <TextBox x:Name="searchMovie" HorizontalAlignment="Left" Height="22" Margin="101,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" TextChanged="TextBox_TextChanged"/>
+        <TextBlock HorizontalAlignment="Left" Margin="22,51,0,0" TextWrapping="Wrap" Text="Search:" VerticalAlignment="Top" Height="19"/>
 
 
     </Grid>
